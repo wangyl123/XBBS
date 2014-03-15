@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content='' name='description'>
+    <meta charset='UTF-8'>
+    <meta content='True' name='HandheldFriendly'>
+    <meta content='width=device-width, initial-scale=1.0' name='viewport'>
+    <title>运行状态 - 管理后台 - @ViewBag.Setting["site_name"]</title>
+    @Html.Partial("_header-meta")
+</head>
+<body id="startbbs">
+    @Html.Partial("_header")
+    <div id="wrap">
+        <div class="container" id="page-main">
+            <div class="row">
+                @Html.Partial("_leftbar")
+
+
+                <div class='col-xs-12 col-sm-6 col-md-9'>
+
+                    <div class='box'>
+                        <div class='cell'>
+                            <a href="<?php echo site_url()?>" class="startbbs1">StartBBS</a> <span class="chevron">&nbsp;›&nbsp;</span> <a href="<?php echo site_url('admin/login');?>">管理后台</a> <span class="chevron">&nbsp;›&nbsp;</span> 基本设置
+                        </div>
+                        <div class="sep10"></div>
+                        <div class="tabbable">
+                            <!-- Only required for left/right tabs -->
+                            @Html.Partial("_settingsnavigate")
+                            <div class="tab-content">
+                                <font color="red">@if (!string.IsNullOrEmpty(ViewBag.res))
+                                                  { @ViewBag.res}</font>
+                                <div class="tab-pane active" id="tab1">
+                                    <div class='inner'>
+                                        <form accept-charset="UTF-8" action="/Admin/Settings_Web" class="form-horizontal" method="post">
+                                            <div style="margin: 0; padding: 0; display: inline">
+                                                @*<input name="utf8" type="hidden" value="&#x2713;" />
+                                                <input name="_method" type="hidden" value="put" />
+                                                <input name="authenticity_token" type="hidden" value="YNAXPQDviOJ/cf5OH/KrqdxOjGLCdka+kUCp+fa3J+A=" />*@
+                                            </div>
+                                            <div class='form-group'>
+                                                <label class="col-sm-3 control-label" for="settings_site_name">网站名称</label>
+                                                <div class='col-sm-5'>
+                                                    <input id="settings_site_name" class="form-control" name="site_name" type="text" value="@(((Dictionary<string, string>)ViewData["dic"])["site_name"])" />
+
+                                                </div>
+                                                <small class='help-inline'>必填</small>
+                                            </div>
+                                            <div class='form-group'>
+                                                <label class="col-sm-3 control-label" for="settings_welcome_tip">欢迎信息</label>
+                                                <div class='col-sm-5'>
+                                                    <input class="form-control" id="settings_welcome_tip" name="welcome_tip" type="text" value="@(((Dictionary<string, string>)ViewData["dic"])["welcome_tip"])" />
+                                                </div>
+                                                <small class='help-inline'>欢迎语</small>
+                                            </div>
+                                            <div class='form-group'>
+                                                <label class="col-sm-3 control-label" for="settings_short_intro">简短介绍</label>
+                                                <div class='col-sm-5'>
+                                                    <input class="form-control" id="settings_short_intro" name="short_intro" type="text" value="@(((Dictionary<string, string>)ViewData["dic"])["short_intro"])" />
+                                                    <small class='help-inline'>网站简短介绍, 显示在右侧边栏</small>
+                                                </div>
+                                            </div>
+                                            <div class='form-group'>
+                                                <label class="col-sm-3 control-label" for="settings_marketing_str">关键字</label>
+                                                <div class='col-sm-5'>
+                                                    <input class="form-control" id="settings_marketing_str" name="site_keywords" type="text" value="@(((Dictionary<string, string>)ViewData["dic"])["site_keywords"])" />
+                                                    <small class='help-inline'>用英文逗号(,)隔开</small>
+                                                </div>
+                                            </div>
+                                            <div class='form-group'>
+                                                <label class="col-sm-3 control-label" for="settings_logo">网站logo</label>
+                                                <div class='col-sm-5'>
+                                                    <input class="form-control" id="settings_logo" name="logo" type="text" value="@(((Dictionary<string, string>)ViewData["dic"])["logo"])" />
+                                                    <small class='help-inline'>可填入文字或图片地址</small>
+                                                </div>
+                                            </div>
+
+                                            <div class='form-group'>
+                                                <label class="col-sm-3 control-label" for="is_rewrite">开启验证码</label>
+                                                <div class='col-sm-5'>
+                                                    <label class='radio-inline'>
+                                                        <input @if ((((Dictionary<string, string>)ViewData["dic"])["show_captcha"]).ToString() == "on")
+                                                               {<text>checked="checked"</text>} id="settings_show_captcha_on" name="show_captcha" type="radio" value="on" />
+                                                        开启
+                                                    </label>
+                                                    <label class='radio-inline'>
+                                                        <input @if ((((Dictionary<string, string>)ViewData["dic"])["show_captcha"]).ToString() == "off")
+                                                               {<text>checked="checked"</text>} id="settings_show_captcha_off" name="show_captcha" type="radio" value="off" />
+                                                        关闭
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class='form-group'>
+                                                <label class="col-sm-3 control-label" for="is_rewrite">启用编辑器</label>
+                                                <div class='col-sm-5'>
+                                                    <label class='radio-inline'>
+                                                        <input @if ((((Dictionary<string, string>)ViewData["dic"])["show_editor"]).ToString() == "on")
+                                                               {<text>checked="checked"</text>} id="settings_show_editor_on" name="show_editor" type="radio" value="on" />
+                                                        开启
+                                                    </label>
+                                                    <label class='radio-inline'>
+                                                        <input @if ((((Dictionary<string, string>)ViewData["dic"])["show_editor"]).ToString() == "off")
+                                                               {<text>checked="checked"</text>} id="settings_show_editor_off" name="show_editor" type="radio" value="off" />
+                                                        关闭
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class='form-group'>
+                                                <label class="col-sm-3 control-label" for="auto_tag">标签开关</label>
+                                                <div class='col-sm-5'>
+                                                    <label class='radio-inline'>
+                                                        <input @if ((((Dictionary<string, string>)ViewData["dic"])["auto_tag"]).ToString() == "off")
+                                                               {<text>checked="checked"</text>}  id="settings_auto_tag_on" name="auto_tag" type="radio" value="on" />
+                                                        自动生成
+                                                    </label>
+                                                    <label class='radio-inline'>
+                                                        <input @if ((((Dictionary<string, string>)ViewData["dic"])["auto_tag"]).ToString() == "off")
+                                                               {<text>checked="checked"</text>} id="settings_auto_tag_off" name="auto_tag" type="radio" value="off" />
+                                                        手动录入
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class='form-group'>
+                                                <label class="col-sm-3 control-label" for="site_close">社区运行状态</label>
+                                                <div class='col-sm-5'>
+                                                    <label class='radio-inline'>
+                                                        <input @if ((((Dictionary<string, string>)ViewData["dic"])["site_close"]).ToString() == "on")
+                                                               {<text>checked="checked"</text>} id="settings_site_close_on" name="site_close" type="radio" value="on" />
+                                                        开启站点
+                                                    </label>
+                                                    <label class='radio-inline'>
+                                                        <input @if ((((Dictionary<string, string>)ViewData["dic"])["site_close"]).ToString() == "off")
+                                                               {<text>checked="checked"</text>} id="settings_site_close_off" name="site_close" type="radio" value="off" />
+                                                        关闭站点
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class='form-group'>
+                                                <label class="col-sm-3 control-label" for="settings_site_close_msg">站点关闭公告</label>
+                                                <div class='col-sm-5'>
+                                                    <textarea class="form-control" id="settings_site_close_msg" name="site_close_msg" rows="5">@(((Dictionary<string, string>)ViewData["dic"])["site_close_msg"])
+</textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class='form-group'>
+                                                <label class="col-sm-3 control-label" for="settings_custom_head_tags">第三方统计代码</label>
+                                                <div class='col-sm-5'>
+                                                    <textarea class="form-control" id="settings_custom_head_tags" name="site_stats" rows="5">@(((Dictionary<string, string>)ViewData["dic"])["site_stats"])
+</textarea>
+                                                    <small class='help-inline'>支持HTML</small>
+                                                </div>
+                                            </div>
+                                            <div class='form-group'>
+                                                <label class="col-sm-3 control-label" for="settings_seo_description">SEO 描述</label>
+                                                <div class='col-sm-5'>
+                                                    <textarea class="form-control" id="settings_seo_description" name="site_description">@(((Dictionary<string, string>)ViewData["dic"])["site_description"])</textarea>
+                                                    <small class='help-inline'>用于HTML meta标签</small>
+                                                </div>
+                                            </div>
+                                            <div class='form-group'>
+                                                <label class="col-sm-3 control-label" for="settings_reward_title">奖励名称</label>
+                                                <div class='col-sm-5'>
+                                                    <input class="form-control" id="settings_reward_title" name="reward_title" type="text" value="@(((Dictionary<string, string>)ViewData["dic"])["reward_title"])" />
+                                                    <small class='help-inline'>例如: 银币，金币，积分，优惠券，代金券，蓝钻, Q币等</small>
+                                                </div>
+                                            </div>
+                                            <div class='form-group'>
+                                                <label class="col-sm-3 control-label" for="encryption_key">安全密钥</label>
+                                                <div class='col-sm-5'>
+                                                    <input class="form-control" id="encryption_key" name="encryption_key" type="text" value="@(((Dictionary<string, string>)ViewData["dic"])["encryption_key"])" />
+                                                    <small class='help-inline'>安全密钥</small>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-3 col-sm-9">
+                                                    <button type="submit" class="btn btn-primary">保存</button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <!-inner->
+                                </div>
+
+
+                                <!--<div class="tab-pane" id="tab7">
+<p>Howdy, I'm in Section 6.</p>
+</div>-->
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    @Html.Partial("_footer")
+</body>
+</html>

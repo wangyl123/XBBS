@@ -1,0 +1,10 @@
+F:\SourceCode\XBBS\XBBS.Entity\bin\Release\XBBS.Models.dll
+F:\SourceCode\XBBS\XBBS.Entity\bin\Release\XBBS.Models.pdb
+F:\SourceCode\XBBS\XBBS.Entity\obj\Release\XBBS.Models.csprojResolveAssemblyReference.cache
+F:\SourceCode\XBBS\XBBS.Entity\obj\Release\XBBS.Models.dll
+F:\SourceCode\XBBS\XBBS.Entity\obj\Release\XBBS.Models.pdb
+F:\SourceCode\JexusBBS\XBBS.Entity\bin\Release\XBBS.Models.dll
+F:\SourceCode\JexusBBS\XBBS.Entity\bin\Release\XBBS.Models.pdb
+F:\SourceCode\JexusBBS\XBBS.Entity\obj\Release\XBBS.Models.csprojResolveAssemblyReference.cache
+F:\SourceCode\JexusBBS\XBBS.Entity\obj\Release\XBBS.Models.dll
+F:\SourceCode\JexusBBS\XBBS.Entity\obj\Release\XBBS.Models.pdb

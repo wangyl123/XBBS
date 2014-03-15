@@ -1,0 +1,9 @@
+F:\SourceCode\XBBS\XBBS.Core\bin\Release\XBBS.Core.dll
+F:\SourceCode\XBBS\XBBS.Core\bin\Release\XBBS.Core.pdb
+F:\SourceCode\XBBS\XBBS.Core\obj\Release\XBBS.Core.csprojResolveAssemblyReference.cache
+F:\SourceCode\XBBS\XBBS.Core\obj\Release\XBBS.Core.dll
+F:\SourceCode\XBBS\XBBS.Core\obj\Release\XBBS.Core.pdb
+F:\SourceCode\JexusBBS\XBBS.Core\bin\Release\XBBS.Core.dll
+F:\SourceCode\JexusBBS\XBBS.Core\bin\Release\XBBS.Core.pdb
+F:\SourceCode\JexusBBS\XBBS.Core\obj\Release\XBBS.Core.dll
+F:\SourceCode\JexusBBS\XBBS.Core\obj\Release\XBBS.Core.pdb

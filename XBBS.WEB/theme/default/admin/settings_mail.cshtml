@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content='' name='description'>
+    <meta charset='UTF-8'>
+    <meta content='True' name='HandheldFriendly'>
+    <meta content='width=device-width, initial-scale=1.0' name='viewport'>
+    <title>运行状态 - 管理后台 - @ViewBag.Setting["site_name"]</title>
+    @Html.Partial("_header-meta")
+</head>
+<body id="startbbs">
+    @Html.Partial("_header")
+    <div id="wrap">
+        <div class="container" id="page-main">
+            <div class="row">
+                @Html.Partial("_leftbar")
+
+
+                <div class='col-xs-12 col-sm-6 col-md-9'>
+
+                    <div class='box'>
+                        <div class='cell'>
+                            <a href="<?php echo site_url()?>" class="startbbs1">StartBBS</a> <span class="chevron">&nbsp;›&nbsp;</span> <a href="<?php echo site_url('admin/login');?>">管理后台</a> <span class="chevron">&nbsp;›&nbsp;</span> 基本设置
+                        </div>
+                        <div class="sep10"></div>
+                        <div class="tabbable">
+                            <!-- Only required for left/right tabs -->
+                          @Html.Partial("_settingsnavigate")
+                            <div class="tab-content">
+                                <font color="red">@if (!string.IsNullOrEmpty(ViewBag.res))
+                                                  { @ViewBag.res}</font>
+
+                                <div class="tab-pane active" id="tab3">
+                                    <div class="inner">
+                                        
+
+
+<div class="tab-pane active" id="tab5">
+<div class="inner">
+<form accept-charset="UTF-8" action="/Admin/Settings_Mail" class="form-horizontal" method="post">
+<div style="margin:0;padding:0;display:inline">
+@*<input name="utf8" type="hidden" value="&#x2713;" />
+<input name="_method" type="hidden" value="put" />
+<input name="authenticity_token" type="hidden" value="YNAXPQDviOJ/cf5OH/KrqdxOjGLCdka+kUCp+fa3J+A=" />*@
+</div>
+<div class='form-group'>
+<label class="col-sm-3 control-label" for="protocol">邮件发送方式：</label>
+<div class='col-sm-5'>
+<label class='radio-inline'>
+<input @if ((((Dictionary<string, string>)ViewData["dic"])["protocol"]).ToString() == "smtp")
+       {<text>checked="checked"</text>} id="settings_protocol" name="protocol" type="radio" value="smtp" />Smtp</label>
+
+</div>
+</div>
+
+<div class='form-group'>
+<label class="col-sm-3 control-label" for="settings_smtp_host">SMTP 服务器:</label>
+<div class='col-sm-5'>
+<input class="form-control" id="Text2" name="smtp_host" type="text" value="@(((Dictionary<string, string>)ViewData["dic"])["smtp_host"])" />
+<small class='help-inline'>设置 SMTP 服务器的地址</small>
+</div>
+</div>
+<div class='form-group'>
+<label class="col-sm-3 control-label" for="settings_smtp_port">SMTP端口:</label>
+<div class='col-sm-5'>
+<input class="form-control" id="settings_smtp_port" name="smtp_port" type="text" value="@(((Dictionary<string, string>)ViewData["dic"])["smtp_port"])" />
+<small class='help-inline'> 设置 SMTP 服务器的端口，默认为 25</small>
+</div>
+</div>
+
+<div class='form-group'>
+<label class="col-sm-3 control-label" for="settings_smtp_user">发信人邮件地址:</label>
+<div class='col-sm-5'>
+<input class="form-control" id="settings_smtp_user" name="smtp_user" type="text" value="@(((Dictionary<string, string>)ViewData["dic"])["smtp_user"])" />
+<small class='help-inline'>@@发信人邮件地址</small>
+</div>
+</div>
+
+<div class='form-group'>
+<label class="col-sm-3 control-label" for="settings_smtp_pass">邮箱密码:</label>
+<div class='col-sm-5'>
+<input class="form-control" id="Password1" name="smtp_pass" type="password" value="@(((Dictionary<string, string>)ViewData["dic"])["smtp_pass"])" />
+<small class='help-inline'>@@发信人邮箱密码</small>
+</div>
+</div>
+
+<hr>
+
+<div class="form-group">
+<div class="col-sm-offset-3 col-sm-9">
+  <button type="submit" class="btn btn-primary">保存</button>
+</div>
+</div>
+</form>
+</div><!-inner->
+</div>
+                                    </div>
+                                    <!-inner->
+                                </div>
+
+
+                                <!--<div class="tab-pane" id="tab7">
+<p>Howdy, I'm in Section 6.</p>
+</div>-->
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    @Html.Partial("_footer")
+</body>
+</html>

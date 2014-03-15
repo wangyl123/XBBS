@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content='' name='description'>
+    <meta charset='UTF-8'>
+    <meta content='True' name='HandheldFriendly'>
+    <meta content='width=device-width, initial-scale=1.0' name='viewport'>
+    <title>运行状态 - 管理后台 - @ViewBag.Setting["site_name"]</title>
+    @Html.Partial("_header-meta")
+</head>
+<body id="startbbs">
+    @Html.Partial("_header")
+    <div id="wrap">
+        <div class="container" id="page-main">
+            <div class="row">
+                @Html.Partial("_leftbar")
+
+
+                <div class='col-xs-12 col-sm-6 col-md-9'>
+
+                    <div class='box'>
+                        <div class='cell'>
+                            <a href="<?php echo site_url()?>" class="startbbs1">StartBBS</a> <span class="chevron">&nbsp;›&nbsp;</span> <a href="<?php echo site_url('admin/login');?>">管理后台</a> <span class="chevron">&nbsp;›&nbsp;</span> 基本设置
+                        </div>
+                        <div class="sep10"></div>
+                        <div class="tabbable">
+                            <!-- Only required for left/right tabs -->
+                            @Html.Partial("_settingsnavigate")
+                            <div class="tab-content">
+                                <font color="red">@if (!string.IsNullOrEmpty(ViewBag.res))
+                                                  { @ViewBag.res}</font>
+                                <div class="tab-pane active" id="tab2">
+                                    <div class="inner">
+                                        <form accept-charset="UTF-8" action="/Admin/Settings_Topic" class="form-horizontal" method="post">
+                                            <div style="margin: 0; padding: 0; display: inline">
+                                                @* <input name="utf8" type="hidden" value="&#x2713;" />
+                                                <input name="_method" type="hidden" value="put" />
+                                                <input name="authenticity_token" type="hidden" value="YNAXPQDviOJ/cf5OH/KrqdxOjGLCdka+kUCp+fa3J+A=" />
+                                           *@
+                                            </div>
+                                            <div class='form-group'>
+                                                <label class="col-sm-3 control-label" for="comment_order">回复列表顺序</label>
+                                                <div class='col-sm-5'>
+                                                    <label class='radio-inline'>
+                                                        <input @if ((((Dictionary<string, string>)ViewData["dic"])["comment_order"]).ToString() == "asc")
+                                                               {<text>checked="checked"</text>} id="settings_show_order_on" name="comment_order" type="radio" value="asc" />
+                                                        正序
+                                                    </label>
+                                                    <label class='radio-inline'>
+                                                        <input @if ((((Dictionary<string, string>)ViewData["dic"])["comment_order"]).ToString() == "desc")
+                                                               {<text>checked="checked"</text>} id="settings_show_order_off" name="comment_order" type="radio" value="desc" />
+                                                        倒序
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class='form-group'>
+                                                <label class="col-sm-3 control-label" for="is_approve">话题(回复)审核开关</label>
+                                                <div class='col-sm-5'>
+                                                    <label class='radio-inline'>
+                                                        <input @if ((((Dictionary<string, string>)ViewData["dic"])["is_approve"]).ToString() == "on")
+                                                               {<text>checked="checked"</text>} id="settings_show_approve_on" name="is_approve" type="radio" value="on" />
+                                                        需审核
+                                                    </label>
+                                                    <label class='radio-inline'>
+                                                        <input @if ((((Dictionary<string, string>)ViewData["dic"])["is_approve"]).ToString() == "off")
+                                                               {<text>checked="checked"</text>} id="settings_show_approve_off" name="is_approve" type="radio" value="off" />
+                                                        无需审核
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class='form-group'>
+                                                <label class="col-sm-3 control-label" for="settings_pagination_comments">首页列表条数</label>
+                                                <div class='col-sm-5'>
+                                                    <div class='input-group'>
+                                                        <input class="form-control" id="settings_pagination_comments" name="home_page_num" type="text" value="@(((Dictionary<string, string>)ViewData["dic"])["home_page_num"])" />
+                                                        <span class='input-group-addon'>/ 页</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class='form-group'>
+                                                <label class="col-sm-3 control-label" for="settings_pagination_comments">列表每页条数</label>
+                                                <div class='col-sm-5'>
+                                                    <div class='input-group'>
+                                                        <input class="form-control" id="Text1" name="per_page_num" type="text" value="@(((Dictionary<string, string>)ViewData["dic"])["per_page_num"])" />
+                                                        <span class='input-group-addon'>/ 页</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class='form-group'>
+                                                <label class="col-sm-3 control-label" for="settings_timespan">发贴时间间隔</label>
+                                                <div class='col-sm-5'>
+                                                    <div class='input-group'>
+                                                        <input class="form-control" id="settings_timespan" name="timespan" type="text" value="@(((Dictionary<string, string>)ViewData["dic"])["timespan"])" />
+                                                        <span class='input-group-addon'>/ 秒</span>
+                                                    </div>
+                                                    <small class='help-inline'>0为不限制</small>
+                                                </div>
+                                            </div>
+
+                                            <div class='form-group'>
+                                                <label class="col-sm-3 control-label" for="settings_words_limit">发贴字数限制</label>
+                                                <div class='col-sm-5'>
+                                                    <div class='input-group'>
+                                                        <input class="form-control" id="settings_words_limit" name="words_limit" type="text" value="@(((Dictionary<string, string>)ViewData["dic"])["words_limit"])" />
+                                                        <span class='input-group-addon'>/ 字</span>
+
+                                                    </div>
+                                                    <small class='help-inline'>默认5000字</small>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-3 col-sm-9">
+                                                    <button type="submit" name="commit" class="btn btn-primary">保存</button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <!-inner->
+                                </div>
+
+
+                                <!--<div class="tab-pane" id="tab7">
+<p>Howdy, I'm in Section 6.</p>
+</div>-->
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    @Html.Partial("_footer")
+</body>
+</html>
