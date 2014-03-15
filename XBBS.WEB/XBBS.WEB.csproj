@@ -15,7 +15,7 @@
     <AssemblyName>XBBS.WEB</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -117,6 +117,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RootController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
+    <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -257,10 +258,18 @@
     <Content Include="static\common\js\main.js" />
     <Content Include="static\common\js\qiniu.js" />
     <Content Include="static\common\js\topic.js" />
+    <Content Include="theme\default\admin\HtmlPage1.html" />
+    <Content Include="theme\default\admin\settings_mail.cshtml" />
+    <Content Include="theme\default\admin\users.cshtml" />
+    <Content Include="theme\default\admin\pagenavigate.cshtml" />
+    <Content Include="theme\default\admin\userGroup.cshtml" />
+    <None Include="theme\default\admin\_settingsnavigate.cshtml" />
     <Content Include="uploads\avatar\avatar_large.jpg" />
     <Content Include="uploads\avatar\avatar_small.jpg" />
     <Content Include="uploads\avatar\default.jpg" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -384,6 +393,25 @@
   <ItemGroup>
     <Content Include="theme\default\Shared\_right-related_forum.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="theme\default\Home\getmore.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="theme\default\Forum\edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="theme\default\Forum\node.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="theme\default\Forum\comment.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\本地发布.pubxml" />
+    <Content Include="theme\default\Settings\password.cshtml" />
+    <Content Include="theme\default\admin\settings_web.cshtml" />
+    <Content Include="theme\default\admin\settings_topic.cshtml" />
+    <Content Include="theme\default\admin\settings_loginapi.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -402,7 +430,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>40912</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:40707/</IISUrl>
+          <IISUrl>http://localhost:8022/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

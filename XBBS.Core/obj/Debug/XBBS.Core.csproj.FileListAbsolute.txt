@@ -3,8 +3,12 @@ F:\SourceCode\XBBS\XBBS.Core\bin\Debug\XBBS.Core.pdb
 F:\SourceCode\XBBS\XBBS.Core\obj\Debug\XBBS.Core.csprojResolveAssemblyReference.cache
 F:\SourceCode\XBBS\XBBS.Core\obj\Debug\XBBS.Core.dll
 F:\SourceCode\XBBS\XBBS.Core\obj\Debug\XBBS.Core.pdb
-E:\HouseWork\XBBS\XBBS.Core\bin\Debug\XBBS.Core.dll
-E:\HouseWork\XBBS\XBBS.Core\bin\Debug\XBBS.Core.pdb
-E:\HouseWork\XBBS\XBBS.Core\obj\Debug\XBBS.Core.csprojResolveAssemblyReference.cache
-E:\HouseWork\XBBS\XBBS.Core\obj\Debug\XBBS.Core.dll
-E:\HouseWork\XBBS\XBBS.Core\obj\Debug\XBBS.Core.pdb
+F:\SourceCode\JexusBBS\XBBS.Core\bin\Debug\XBBS.Core.dll
+F:\SourceCode\JexusBBS\XBBS.Core\bin\Debug\XBBS.Core.pdb
+F:\SourceCode\JexusBBS\XBBS.Core\obj\Debug\XBBS.Core.dll
+F:\SourceCode\JexusBBS\XBBS.Core\obj\Debug\XBBS.Core.pdb
+F:\Git\bbsjexus\JexusBBS\XBBS.Core\bin\Debug\XBBS.Core.dll
+F:\Git\bbsjexus\JexusBBS\XBBS.Core\bin\Debug\XBBS.Core.pdb
+F:\Git\bbsjexus\JexusBBS\XBBS.Core\obj\Debug\XBBS.Core.csprojResolveAssemblyReference.cache
+F:\Git\bbsjexus\JexusBBS\XBBS.Core\obj\Debug\XBBS.Core.dll
+F:\Git\bbsjexus\JexusBBS\XBBS.Core\obj\Debug\XBBS.Core.pdb

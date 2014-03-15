@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+    XBBS.Models.User userinfo = (XBBS.Models.User)ViewBag.UserInfo;
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta content='><?php echo $username?> - @ViewBag.Setting["site_name"]' name='description'>
@@ -19,36 +22,46 @@
                             <table border='0' cellpadding='0' cellspacing='0' width="100%">
                                 <tr>
                                     <td align='center' valign='top' width='73'>
-                                        <?php if($avatar){?>
-                                        <img alt="<?php echo $username?> large avatar" class="large_avatar" style="width:72px; height:72px;" src="<?php echo base_url($big_avatar)?>" />
-                                        <?php } else{?>
-                                        <img alt="<?php echo $username?> large avatar" class="large_avatar" style="width:72px; height:72px;" src="<?php echo base_url('uploads/avatar/default.jpg')?>" />
-                                        <?php }?>
+                                        @{
+                                            if (!string.IsNullOrEmpty(userinfo.Avatar))
+                                            {     <img alt="@userinfo.UserName large avatar" class="large_avatar" style="width:72px; height:72px;" src="@userinfo.Avatar" />
+                                            }
+                                            else
+                                            {
+                                                <img alt="@userinfo.UserName large avatar" class="large_avatar" style="width:72px; height:72px;" src="@Url.Content("~/uploads/avatar/default.jpg")" />
+
+                                            }
+                                        }
+
                                     </td>
                                     <td valign='top' width='10'></td>
                                     <td align='left' valign='top' width='auto'>
                                         <div class='pull-right'>
                                             <div class='sep3'></div>
-                                            <?php if($this->session->userdata('uid')){?>
+                                            @{
+                                                if (ViewBag.User != null && ViewBag.User.Uid != userinfo.Uid)
+                                                {
+
                                             <?php if(!$is_followed){?>
-                                            <a href="<?php echo site_url('follow/add/'.$uid);?>" class="btn btn-info btn-sm" data-method="post" rel="nofollow">加入特别关注</a>
+                                                    <a href="/follow/add/@userinfo.Uid" class="btn btn-info btn-sm" data-method="post" rel="nofollow">加入特别关注</a>
                                             <?php }else{?>
-                                            <a href="<?php echo site_url('follow/cancel/'.$uid);?>" class="btn btn-sm btn-warning" data-method="post" rel="nofollow">取消特别关注</a>
+                                                    <a href="/follow/cancel/@userinfo.Uid" class="btn btn-sm btn-warning" data-method="post" rel="nofollow">取消特别关注</a>
                                             <?php }?>
-                                            <?php }?>
+                                                }
+                                            }
                                         </div>
                                         <h2 style='padding: 0px; margin: 0px; font-size: 22px; line-height: 22px;'>
-                                            <?php echo $username?>
+                                            @userinfo.UserName
                                         </h2>
                                         <div class='sep5'></div>
                                         <!--<span class='gray bigger'><?php echo $signature?></span>-->
                                         <div class='sep5'></div>
                                         <span class='snow'>
-                                            <?php echo $username?>
+                                            @userinfo.UserName
                                             第
-                                            <?php echo $uid?>
+                                            @userinfo.Uid
                                             号会员, 加入于
-                                            <?php echo $this->myclass->friendly_date($regtime)?>
+                                            @XBBS.Core.Utils.FriendlyDate(userinfo.Regtime.Value)
                                         </span>
                                         <div class='sep10'></div>
                                         <table border='0' cellpadding='2' cellspacing='0' width='100%'>
@@ -88,7 +101,7 @@
                     </div>
                     <div class='box'>
                         <div class='box-header'>
-                            <?php echo $username?>
+                            @userinfo.UserName
                             最近创建的话题
                         </div>
                         <?php foreach($user_posts as $v){?>
@@ -123,7 +136,7 @@
                     </div>
                     <div class='box'>
                         <div class='box-header'>
-                            <?php echo $username?>
+                            @userinfo.UserName
                             最近的回复
                         </div>
                         <?php foreach($user_comments as $v){?>

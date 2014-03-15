@@ -6,7 +6,7 @@ using System.Text;
 
 namespace XBBS.Models
 {
-    [TableName("stb_categories")]
+    [TableName("jexus_categories")]
     [PrimaryKey("cid", autoIncrement = false)]
     public class Category
     {

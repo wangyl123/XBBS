@@ -75,8 +75,7 @@
                             {
                                 <div style="margin:0;padding:0;display:inline">
                                     <input name="utf8" type="hidden" value="&#x2713;" />
-                                    <input name="uid" type="hidden" value="1" />
-                                    <input name="cid" type="hidden" value="1" />
+                                    <input name="uid" type="hidden" value="1" /> 
                                 </div>
                                 <a name='new_topic'></a>
                                 <div class="form-group">
@@ -94,7 +93,7 @@
                                 {
                                     if (ViewBag.NodeId != 0)
                                     {
-                                        <option selected="selected" value="<?php echo $cate['cid']; ?>"><?php echo $cate['cname']?></option>
+                                        <option selected="selected" value="@ViewBag.NodeId"><?php echo $cate['cname']?></option>
                                     }
                                     else
                                     {

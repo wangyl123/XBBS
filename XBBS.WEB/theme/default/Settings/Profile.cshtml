@@ -23,13 +23,13 @@
                                 <li class="active">
                                     <a href="#">个人信息</a>
                                 </li>
-                                <li><a href="@Url.Action("avatar","settings")">头像</a></li>
-                                <li><a href="/settings/password">修改密码</a></li>
+                                <li><a href="@Url.Action("Avatar", "Settings")">头像</a></li>
+                                <li><a href="@Url.Action("Password","Settings")">修改密码</a></li>
                             </ul>
                         </div>
 
                         <div class='inner'>
-                            <form accept-charset="UTF-8" action="/settings/profile');?>" class="form-horizontal" id="edit_user_313" method="post" novalidate="novalidate">
+                            <form accept-charset="UTF-8" action="/Settings/profile" class="form-horizontal" id="edit_user_313" method="post" novalidate="novalidate">
                                 <!--<div style="margin:0;padding:0;display:inline">
                                 <input name="utf8" type="hidden" value="&#x2713;" /><input name="_method" type="hidden" value="put" /><input name="authenticity_token" type="hidden" value="bFgf4gFtDOwT1iCoDRGI7aqc14eXt1h403ny+0VSrz0=" />
                                 </div>-->
@@ -48,32 +48,32 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label" for="user_account_attributes_personal_website">个人网站</label>
                                     <div class="col-sm-5">
-                                        <input class="form-control" id="user_account_attributes_personal_website" name="homepage" size="50" type="text" value="<?=$homepage?>" />
+                                        <input class="form-control" id="user_account_attributes_personal_website" name="homepage" size="50" type="text" value="@Model.Homepage" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label" for="user_account_attributes_location">所在地</label>
                                     <div class="col-sm-5">
-                                        <input class="form-control" id="user_account_attributes_location" name="location" size="50" type="text" value="<?=$location?>" />
+                                        <input class="form-control" id="user_account_attributes_location" name="location" size="50" type="text" value="@Model.Location" />
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label" for="user_account_attributes_signature">QQ</label>
                                     <div class="col-sm-5">
-                                        <input class="form-control" id="user_account_attributes_signature" name="qq" size="50" type="text" value="<?=$qq?>" />
+                                        <input class="form-control" id="user_account_attributes_signature" name="qq" size="50" type="text" value="@Model.QQ" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label" for="user_account_attributes_signature">签名</label>
                                     <div class="col-sm-5">
-                                        <input class="form-control" id="user_account_attributes_signature" name="signature" size="50" type="text" value="<?=$signature?>" />
+                                        <input class="form-control" id="user_account_attributes_signature" name="signature" size="50" type="text" value="@Model.Signature" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label" for="user_account_attributes_introduction">个人简介</label>
                                     <div class="col-sm-5">
-                                        <textarea class="form-control" cols="40" id="user_account_attributes_introduction" name="introduction" rows="5"><?=$introduction?></textarea>
+                                        <textarea class="form-control" cols="40" id="user_account_attributes_introduction" name="introduction" rows="5">@Model.Introduction</textarea>
                                     </div>
                                 </div>
                                 <input id="user_account_attributes_id" name="user[account_attributes][id]" type="hidden" value="326" />
@@ -89,7 +89,7 @@
 
                 </div>
                 <div class='col-xs-12 col-sm-6 col-md-4' id='Rightbar'>
-                    @Html.Partial("_right-login")
+                     @Html.Action("RightLogin","Shared")
                     @Html.Partial("_right_ad")
                 </div>
             </div>

@@ -14,11 +14,13 @@ namespace XBBS.WEB
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(null, "section", new { controller = "Home", action = "Section", id = UrlParameter.Optional });
-            routes.MapRoute(null, "admin", new { controller = "Admin", action = "Dashboard", id = UrlParameter.Optional });
-            routes.MapRoute(null, "admin/{action}", new { controller = "Admin", action = "Dashboard", id = UrlParameter.Optional });
+            routes.MapRoute(null, "admin", new { controller = "Admin", action = "Settings_Web", id = UrlParameter.Optional });
+            routes.MapRoute(null, "admin/Users/{page}", new { controller = "Admin", action = "Users", page = UrlParameter.Optional });
+            routes.MapRoute(null, "admin/{action}", new { controller = "Admin", action = "Settings_Web", id = UrlParameter.Optional });
             routes.MapRoute(null, "settings", new { controller = "Settings", action = "Profile", id = UrlParameter.Optional });
             routes.MapRoute(null, "user", new { controller = "Home", action = "User", id = UrlParameter.Optional });
-            routes.MapRoute(null, "topic/{id}", new { controller = "Forum", action = "Topic", id = UrlParameter.Optional });
+            routes.MapRoute(null, "topic/{id}/{page}", new { controller = "Forum", action = "Topic", page = 1, id = UrlParameter.Optional });
+            routes.MapRoute(null, "node/{id}", new { controller = "Forum", action = "Node", id = UrlParameter.Optional });
 
             routes.MapRoute(name: "Default",
                 url: "{controller}/{action}/{id}",

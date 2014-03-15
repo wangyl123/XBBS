@@ -4,13 +4,22 @@
         最新标签
     </div>
     <div class='inner'>
-        <?php if($taglist){?>
-        <ul class="list_unstyled" ">
-<?php foreach($taglist as $v){?>
-	<span class=" tags">
-            <a href="<?php echo site_url('tag/index/'.$v['tag_title']);?>"><?php echo $v['tag_title'];?></a></span>
-            <?php }?>
-        </ul>
-        <?php }?>
+        @{
+            if (ViewBag.TagList != null)
+            {
+                <ul class="list_unstyled">
+                    @{
+                foreach (var item in ViewBag.TagList)
+                {
+                    <span class=" tags">
+                        <a href="/tag/index/@item.TagTitle">@item.TagTitle</a>
+                    </span>
+                }
+                    }
+                </ul>
+
+            }
+
+        }
     </div>
 </div>

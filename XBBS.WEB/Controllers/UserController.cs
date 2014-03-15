@@ -123,6 +123,8 @@ namespace XBBS.WEB.Controllers
 
         public ActionResult Info(int id)
         {
+
+            ViewBag.UserInfo = XBBS.DataProvider.AccountDataProvider.GetUser(id);
             return View();
 
         }

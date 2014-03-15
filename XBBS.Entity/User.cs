@@ -6,7 +6,7 @@ using System.Text;
 
 namespace XBBS.Models
 {
-    [PetaPoco.TableName("stb_users")]
+    [PetaPoco.TableName("jexus_users")]
     [PetaPoco.PrimaryKey("uid", autoIncrement = true)]
     public class User
     {
