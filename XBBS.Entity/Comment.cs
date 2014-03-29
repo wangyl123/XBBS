@@ -5,7 +5,7 @@ using System.Text;
 
 namespace XBBS.Models
 {
-    [PetaPoco.TableName("jexus_comments")]
+    [PetaPoco.TableName("comments")]
     [PetaPoco.PrimaryKey("id", autoIncrement = true)]
     public class Comment
     {

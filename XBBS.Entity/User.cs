@@ -6,7 +6,7 @@ using System.Text;
 
 namespace XBBS.Models
 {
-    [PetaPoco.TableName("jexus_users")]
+    [PetaPoco.TableName("users")]
     [PetaPoco.PrimaryKey("uid", autoIncrement = true)]
     public class User
     {
@@ -165,6 +165,8 @@ namespace XBBS.Models
             set;
         }
 
+        //这东西干嘛用的？
+        //应该是判断那个用户不能删除吧？通过group哪里的type推断
         /// <summary>
         /// 
         /// </summary>
@@ -234,5 +236,8 @@ namespace XBBS.Models
             get;
             set;
         }
+
+        [PetaPoco.Column("nick_name")]
+        public string NickName { get; set; }
     }
 }

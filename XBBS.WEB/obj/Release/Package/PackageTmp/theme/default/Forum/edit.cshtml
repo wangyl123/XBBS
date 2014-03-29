@@ -68,7 +68,7 @@
                             <form accept-charset="UTF-8" action="/forum/edit/@Model.FId" class="simple_form form-vertical" id="new_topic" method="post" novalidate="novalidate">
                                 <div style="margin:0;padding:0;display:inline">
                                     <input name="utf8" type="hidden" value="&#x2713;" />
-                                  
+
                                 </div>
                                 <a name='new_topic'></a>
                                 <div class="form-group string required">
@@ -76,7 +76,7 @@
                                         <label class="string required control-label" for="topic_title">标题</label>
                                         <input class="form-control" id="topic_title" maxlength="100" name="title" size="60" type="text" value="@Model.Title" />
                                     </div>
-                                    <span class="help-inline red"><?php echo form_error('title');?></span>
+                                    <span class="help-inline red">@ViewData.ModelState["content"] </span>
                                 </div>
 
                                 <div class="form-group optional" style="width:300px; margin-left: 15px; margin-top: 10px;">
@@ -110,7 +110,7 @@
                                             }
                                         }
                                     </select>
-                                    <span class="help-inline red"><?php echo form_error('cid');?></span>
+                                    <span class="help-inline red"> @*错误cid信息*@ </span>
                                 </div>
                                 <!--<div id='preview-widget'>
                                 <a href="javascript:void(0);" class="action_label cancel_preview current_label" data-ref="topic_content">编辑</a>
@@ -142,7 +142,7 @@
                                         <textarea class="form-control" id="topic_content" name="content" placeholder="话题内容" rows="10">
                                             @Model.Content
                                         </textarea>
-                                        <span class="help-inline red"><?php echo form_error('content');?></span>
+                                        <span class="help-inline red"> @ViewData.ModelState["content"]</span>
                                     </div>
                                 </div>
                                 <div class="col-sm-9">

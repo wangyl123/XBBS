@@ -6,8 +6,8 @@ using System.Text;
 
 namespace XBBS.Models
 {
-    [TableName("jexus_categories")]
-    [PrimaryKey("cid", autoIncrement = false)]
+    [TableName("categories")]
+    [PrimaryKey("cid", autoIncrement = true)]
     public class Category
     {
 
@@ -144,5 +144,8 @@ namespace XBBS.Models
             return list;
 
         }
+
+
+        
     }
 }

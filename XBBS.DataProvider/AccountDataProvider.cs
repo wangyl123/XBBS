@@ -48,8 +48,10 @@ namespace XBBS.DataProvider
             {
                 return db.SingleOrDefault<Models.UserGroup>("WHERE gid=@0 ", id);
             }
-
-
         }
+
+        
+
+
     }
 }

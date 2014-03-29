@@ -6,7 +6,7 @@ using System.Text;
 namespace XBBS.Models
 {
 
-    [PetaPoco.TableName("jexus_settings"),PetaPoco.PrimaryKey("sid")]
+    [PetaPoco.TableName("settings"),PetaPoco.PrimaryKey("sid")]
     public class Settings
     {
         [PetaPoco.Column(Name = "sid")]

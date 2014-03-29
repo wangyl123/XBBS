@@ -16,6 +16,10 @@ namespace XBBS.WEB
             routes.MapRoute(null, "section", new { controller = "Home", action = "Section", id = UrlParameter.Optional });
             routes.MapRoute(null, "admin", new { controller = "Admin", action = "Settings_Web", id = UrlParameter.Optional });
             routes.MapRoute(null, "admin/Users/{page}", new { controller = "Admin", action = "Users", page = UrlParameter.Optional });
+            routes.MapRoute(null, "admin/UserEdit/{uid}", new { controller = "Admin", action = "UserEdit", uid = UrlParameter.Optional });
+            routes.MapRoute(null, "admin/UserGroupEdit/{groupName}/{gid}", new { controller = "Admin", action = "UserGroupEdit", groupName = UrlParameter.Optional, gid = UrlParameter.Optional });
+            routes.MapRoute(null, "Admin/DeleteGroup/{gid}", new { controller = "Admin", action = "DeleteGroup", gid = UrlParameter.Optional });
+            routes.MapRoute(null, "Admin/DeleteUser/{uid}", new { controller = "Admin", action = "DeleteUser", uid = UrlParameter.Optional });
             routes.MapRoute(null, "admin/{action}", new { controller = "Admin", action = "Settings_Web", id = UrlParameter.Optional });
             routes.MapRoute(null, "settings", new { controller = "Settings", action = "Profile", id = UrlParameter.Optional });
             routes.MapRoute(null, "user", new { controller = "Home", action = "User", id = UrlParameter.Optional });

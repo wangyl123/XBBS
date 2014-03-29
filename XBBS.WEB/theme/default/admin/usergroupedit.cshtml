@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content='' name='description'>
+    <meta charset='UTF-8'>
+    <meta content='True' name='HandheldFriendly'>
+    <meta content='width=device-width, initial-scale=1.0' name='viewport'>
+    <title>运行状态 - 管理后台 - @ViewBag.Setting["site_name"]</title>
+    @Html.Partial("_header-meta")
+</head>
+<body id="startbbs">
+    @Html.Partial("_header")
+    <div id="wrap">
+        <div class="container" id="page-main">
+            <div class="row">
+                @Html.Partial("_leftbar")
+
+
+                <div class='col-xs-12 col-sm-6 col-md-9'>
+
+                    <div class='box'>
+                        <div class='cell'>
+                            <div class='pull-right'>
+                                <form accept-charset="UTF-8" action="<?php echo site_url('admin/users/search');?>" class="form-search" method="post">
+                                    <div style="margin: 0; padding: 0; display: inline">
+                                        <input name="utf8" type="hidden" value="&#x2713;" />
+                                    </div>
+                                    <div class='input-group'>
+                                        <input class="span2 search-query" id="username" name="username" placeholder="用户昵称" type="text" />
+                                        <input class="btn" name="commit" type="submit" value="搜索" />
+                                    </div>
+                                </form>
+                            </div>
+                            <a href="/" class="startbbs1">StartBBS</a> <span class="chevron">&nbsp;›&nbsp;</span> <a href="/Admin">管理后台</a> <span class="chevron">&nbsp;›&nbsp;</span> 用户
+                        </div>
+
+
+
+                        <div class='cell'>
+                            <ul class="nav nav-pills">
+                                <li><a href="/Admin/Users">用户列表</a></li>
+                                <li class="active"><a href="/Admin/UserGroup">用户组</a></li>
+                            </ul>
+
+                            <form accept-charset="UTF-8" action="/Admin/UserGroupEdit" class="simple_form form-horizontal" id="Form1" method="post" novalidate="novalidate">
+                                <div style="margin: 0; padding: 0; display: inline">
+                                    <input type="hidden" name="gid" id="gid" value="@ViewBag.Gid" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="groupName">用户组名</label>
+                                    <div class="col-sm-5">
+                                        <input class="form-control" id="groupName" name="groupName" size="50" type="text" value="@ViewBag.GroupName" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-3 col-sm-9">
+                                        <button type="submit" class="btn btn-primary">
+                                            @if (ViewBag.Gid == null)
+                                            {
+                                                <text>新建用户组</text>
+                                            }
+                                            else
+                                            {
+                                                <text>更新用户组</text>
+                                            }
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Partial("_footer")
+</body>
+</html>

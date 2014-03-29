@@ -1,0 +1,112 @@
+﻿@model XBBS.Models.User
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content='' name='description'>
+    <meta charset='UTF-8'>
+    <meta content='True' name='HandheldFriendly'>
+    <meta content='width=device-width, initial-scale=1.0' name='viewport'>
+    <title>运行状态 - 管理后台 - @ViewBag.Setting["site_name"]</title>
+    @Html.Partial("_header-meta")
+</head>
+<body id="startbbs">
+    @Html.Partial("_header")
+    <div id="wrap">
+        <div class="container" id="page-main">
+            <div class="row">
+                @Html.Partial("_leftbar")
+
+
+                <div class='col-xs-12 col-sm-6 col-md-9'>
+
+                    <div class='box'>
+                        <div class='cell'>
+                            <div class='pull-right'><a href="/Admin/Nodes" class="btn">返回分类列表</a></div>
+                            <a href="/" class="startbbs1">XBBS</a> <span class="chevron">&nbsp;›&nbsp;</span> <a href="/Admin">管理后台</a> <span class="chevron">&nbsp;›&nbsp;</span> 添加分类
+                        </div>
+                        <div class='cell'>
+                            <form accept-charset="UTF-8" action="/Admin/AddNodes" class="form-horizontal" id="edit_user_1" method="post" novalidate="novalidate">
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="cname">分类名称</label>
+                                    <div class="col-sm-5">
+                                        <input class="form-control" id="cname" name="CName" type="text" value="" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="user_email">父目录</label>
+                                    <div class="col-sm-5">
+                                        <select name="pid" id="pid" class="form-control">
+                                            <option selected="selected" value="0">根目录</option>
+                                            @foreach (var item in (ViewData["categoryList"] as List<XBBS.Models.Category>))
+                                            {
+                                                <option value="@item.CId">&nbsp;&nbsp;@item.CName</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="keywords">分类关键字</label>
+                                    <div class="col-sm-5">
+                                        <input class="form-control" id="keywords" name="Keywords" size="50" type="text" value="" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="content">分类简介</label>
+                                    <div class="col-sm-5">
+                                        <textarea class="form-control" cols="40" id="content" name="Content" rows="5"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="master">节点版主</label>
+                                    <div class="col-sm-5">
+                                        <input class="form-control" id="master" name="Master" size="50" type="text" value="" />
+                                        <small class='help-inline'>多个版主间用逗号隔开(,)</small>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="permit">节点权限</label>
+                                    <div class="col-sm-5">
+                                        @foreach (var item in (ViewData["usergroupList"] as List<XBBS.Models.UserGroup>))
+                                        {
+                                            <label class="checkbox inline">
+                                                <input name="premit" value="@item.GId" type="checkbox">@item.GroupName
+                                            </label>
+                                        }
+
+
+
+                                        <label class="checkbox">
+                                            (<input id="checkall" type="checkbox">全选/取消
+                                            <small class='help-inline'>不选时为不限制</small>)
+                                        </label>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-3 col-sm-9">
+                                        <button type="submit" class="btn btn-primary">添加节点</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Partial("_footer")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#checkall").bind('click', function () {
+                $("input:checkbox").prop("checked", $(this).prop("checked"));//全选
+            });
+        });
+    </script>
+</body>
+</html>

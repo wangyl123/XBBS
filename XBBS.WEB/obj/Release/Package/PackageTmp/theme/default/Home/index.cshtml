@@ -29,8 +29,11 @@
                             @{
                                 if (string.IsNullOrEmpty(HttpContext.Current.User.Identity.Name))
                                 {
-                                    <div class='sep10'></div>
-                                    <div class="jumbotron"><h1>@ViewBag.Setting["site_name"] </h1><p>@ViewBag.Setting["short_intro"]  </p></div>
+                                <div class='sep10'></div>
+                                <div class="jumbotron">
+                                    <h1>@ViewBag.Setting["site_name"] </h1>
+                                    <p>@ViewBag.Setting["short_intro"]  </p>
+                                </div>
                                 }
                             }
                         </div>
@@ -41,65 +44,66 @@
                                     foreach (var f in (List<XBBS.Models.Forums>)ViewBag.ForumList)
                                     {
                                         XBBS.Models.User user = XBBS.DataProvider.AccountDataProvider.GetUser((int)f.Uid);
-                                        <div class="cell topic">
-                                            <div class="avatar pull-left">
-                                                <a href="/user/info/@user.Uid" class="profile_link" title="@user.Uid">
-                                                    @{  if (!string.IsNullOrEmpty(user.Avatar))
-                                                      {
-                                                        <img alt="@user.UserName medium avatar" class="medium_avatar" src="@Url.Content("~/" + user.Avatar)" />
-                                                      }
-                                                      else
-                                                      {
-                                                        <img alt="@user.UserName medium avatar" class="medium_avatar" src="@Url.Content("~/uploads/avatar/default.jpg")" />
-                                                      }
-                                                    }
-                                                </a>
-                                            </div>
-                                            <div class='item_title'>
-                                                <div class='pull-right'>
-                                                    <div class='badge badge-info'><a href="/topic/@f.FId#reply">@f.Comments</a></div>
-                                                </div>
-                                                <h2 class='topic_title'>
-                                                    <a href="/topic/@f.FId" class="startbbs topic">@f.Title</a>
-                                                    @{ if (f.IsTop == 1)
-                                                     {<span class="badge badge-info">置顶</span>} }
-                                                </h2>
-                                                <div class='topic-meta'>
-                                                    <a href="/node/@f.Cid" class="node">@XBBS.DataProvider.ForumDataProvider.GetCategory(f.Cid).CName</a>
-                                                    <span class='text-muted'>•</span>
-                                                    <a href="/user/info/@f.Uid" class="dark startbbs profile_link" title="<?php echo $v['username']?>"> @XBBS.DataProvider.AccountDataProvider.GetUser((int)f.Uid).UserName</a>
-                                                    <span class='text-muted'>•</span>
-                                                    @*有好的日期转换*@
-                                                    @XBBS.Core.Utils.FriendlyDate(f.UpdateTime.Value)
-                                                    <span class='text-muted'>•</span>
-                                                    @{
-                                        if (f.Ruid != null)
-                                        {
-                                            @:最后回复来自
-    <a href="/user/info/@f.Ruid" class="startbbs profile_link" title="@XBBS.DataProvider.AccountDataProvider.GetUser(f.Ruid.Value).UserName">@XBBS.DataProvider.AccountDataProvider.GetUser(f.Ruid.Value).UserName</a>
-
-                                        }
-                                        else
-                                        {
-                                            @:暂无回复
-
-                                        }
-                                                    }
-
-                                                </div>
-                                            </div>
+                                <div class="cell topic">
+                                    <div class="avatar pull-left">
+                                        <a href="/user/info/@user.Uid" class="profile_link" title="@user.Uid">
+                                            @{  if (!string.IsNullOrEmpty(user.Avatar))
+                                                {
+                                                <img alt="@user.UserName medium avatar" class="medium_avatar" src="@Url.Content("~/" + user.Avatar)" />
+                                                }
+                                                else
+                                                {
+                                                <img alt="@user.UserName medium avatar" class="medium_avatar" src="@Url.Content("~/uploads/avatar/default.jpg")" />
+                                                }
+                                            }
+                                        </a>
+                                    </div>
+                                    <div class='item_title'>
+                                        <div class='pull-right'>
+                                            <div class='badge badge-info'><a href="/topic/@f.FId#reply">@f.Comments</a></div>
                                         </div>
+                                        <h2 class='topic_title'>
+                                            <a href="/topic/@f.FId" class="startbbs topic">@f.Title</a>
+                                            @{ if (f.IsTop == 1)
+                                               {<span class="badge badge-info">置顶</span>} }
+                                        </h2>
+                                        <div class='topic-meta'>
+                                            <a href="/node/@f.Cid" class="node">@XBBS.DataProvider.ForumDataProvider.GetCategory(f.Cid).CName</a>
+                                            <span class='text-muted'>•</span>
+                                            <a href="/user/info/@f.Uid" class="dark startbbs profile_link" title="<?php echo $v['username']?>">@XBBS.DataProvider.AccountDataProvider.GetUser((int)f.Uid).UserName</a>
+                                            <span class='text-muted'>•</span>
+                                            @*有好的日期转换*@
+                                            @XBBS.Core.Utils.FriendlyDate(f.UpdateTime.Value)
+                                            <span class='text-muted'>•</span>
+                                            @{
+                                               if (f.Ruid != null)
+                                               {
+                                                @:最后回复来自
+                                                <a href="/user/info/@f.Ruid" class="startbbs profile_link" title="@XBBS.DataProvider.AccountDataProvider.GetUser(f.Ruid.Value).UserName">@XBBS.DataProvider.AccountDataProvider.GetUser(f.Ruid.Value).UserName</a>
+
+                                               }
+                                               else
+                                               {
+                                                @:暂无回复
+
+                                               }
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
                                     }
                                 }
                                 else
                                 {
-                                    <div class='cell topic'>
-                                        暂无话题, 请发表话题！
-                                    </div>
+                                <div class='cell topic'>
+                                    暂无话题, 请发表话题！
+                                </div>
                                 }
                             }
 
-                        </span><!--infolist-->
+                        </span>
+                        <!--infolist-->
 
                         <div class='inner'>
                             <div class='pull-right'>
@@ -139,26 +143,26 @@
 
                     <div class="box">
                         <div class='box-header'>
-                            话题节点
+                            全部版块
                         </div>
                         @{
                             if (ViewBag.Category != null)
                             {
-                                <div class="inner">
-                                    @{
+                            <div class="inner">
+                                @{
                                 foreach (var item in ViewBag.Category)
                                 {
                                     if (item.PId == 0)
                                     {
-                                        <ul class="list-inline">
-                                            <li class="test-muted">@item.CName</li>
-                                            @{
+                                    <ul class="list-inline">
+                                        <li class="test-muted">@item.CName</li>
+                                        @{
                                         foreach (var cat in XBBS.Models.Category.GetCatList(ViewBag.Category, item.CId))
                                         {
                                             <li class="btn btn-default"><a href="/node/@cat.CId" class="startbbs">@cat.CName</a></li>
                                         }
-                                            }
-                                        </ul>
+                                        }
+                                    </ul>
                                     }
                                     else
                                     {                                        @*<ul class="list-inline">
@@ -168,14 +172,14 @@
                                         </ul>*@
                                     }
                                 }
-                                    }
-                                </div>
+                                }
+                            </div>
                             }
                         }
                     </div>
                 </div>
                 <div class='col-xs-12 col-xs-12 col-sm-6 col-md-4' id='Rightbar'>
-                    @Html.Partial("_right-login")
+                    @Html.Action("RightLogin", "Shared")
                     @Html.Partial("_right_tags")
                     <div class='box'>
                         <div class='box-header'>
@@ -183,22 +187,25 @@
                         </div>
                         <div class='inner'>
                             <table border='0' cellpadding='3' cellspacing='0' width='100%'>
-                                @*<?php if($total_users>0){ ?>*@
-                                <tr>
-                                    <td align='right' width='70'>
-                                        <span class='gray'>最新会员</span>
-                                    </td>
-                                    <td align='left'>
-                                        <strong><?php echo $last_user['username']?></strong>
-                                    </td>
-                                </tr>
-                                <?php }?>
+                                @{ 
+                                    //人数
+                                    if (1 > 0)
+                                    {
+                                    <tr>
+                                        <td align='right' width='70'>
+                                            <span class='gray'>最新会员</span>
+                                        </td>
+                                        <td align='left'>
+                                            <strong>@*用户名*@*@@</strong>
+                                        </td>
+                                    </tr>
+                                    }}
                                 <tr>
                                     <td align='right' width='70'>
                                         <span class='gray'>注册会员</span>
                                     </td>
                                     <td align='left'>
-                                        <strong><?php echo $total_users?></strong>
+                                        <strong>22</strong>
                                     </td>
                                 </tr>
                                 <tr>
@@ -206,7 +213,7 @@
                                         <span class='gray'>今日话题</span>
                                     </td>
                                     <td align='left'>
-                                        <strong><?php echo $today_forums;?></strong>
+                                        <strong>221</strong>
                                     </td>
                                 </tr>
                                 <tr>
@@ -214,7 +221,7 @@
                                         <span class='gray'>话题总数</span>
                                     </td>
                                     <td align='left'>
-                                        <strong><?php echo $total_forums?></strong>
+                                        <strong>0</strong>
                                     </td>
                                 </tr>
 
@@ -223,7 +230,7 @@
                                         <span class='gray'>回复数</span>
                                     </td>
                                     <td align='left'>
-                                        <strong><?php echo $total_comments?></strong>
+                                        <strong>0</strong>
                                     </td>
                                 </tr>
                             </table>
@@ -237,7 +244,7 @@
                         </div>
                         <div class="inner">
                             <ul class="list_unstyled">
-                                <li style="width:0; height:0; overflow:hidden;"><a href="http://www.startbbs.com" target="_blank">StartBBS</a></li>
+                                <li style="width: 0; height: 0; overflow: hidden;"><a href="http://www.startbbs.com" target="_blank">StartBBS</a></li>
                                 @{
                                     if (ViewBag.Links != null || ViewBag.Links.Count == 0)
                                     {
@@ -245,13 +252,13 @@
                                         {
                                             if (item.IsHidden == 0)
                                             {
-                                                <li><a href="@item.Url" target="_blank">@item.Name</a></li>
+                                    <li><a href="@item.Url" target="_blank">@item.Name</a></li>
                                             }
                                         }
                                     }
                                     else
                                     {
-                                        <li>暂无链接</li>
+                                    <li>暂无链接</li>
                                     }
                                 }
 

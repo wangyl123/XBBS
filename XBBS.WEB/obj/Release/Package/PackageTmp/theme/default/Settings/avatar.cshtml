@@ -21,16 +21,16 @@
                         <div class='cell' style="border-bottom-style: none;">
                             <a href="<?php echo site_url()?>" class="startbbs"><?php echo $settings['site_name']?></a> <span class="chevron">&nbsp;›&nbsp;</span> 设置
                             <ul class="nav nav-tabs" style="margin-top:10px;">
-                                <li>
-                                    <a href="@Url.Action("profile","settings")">个人信息</a>
+                                <li class="active">
+                                    <a href="@Url.Action("Profile", "Settings")">个人信息</a>
                                 </li>
-                                <li class="active"><a href="#">头像</a></li>
-                                <li><a href="/settings/password">修改密码</a></li>
+                                <li><a href="#">头像</a></li>
+                                <li><a href="@Url.Action("Password", "Settings")">修改密码</a></li>
                             </ul>
                         </div>
 
                         <div class="inner">
-                            <form class="form-horizontal" enctype="multipart/form-data" action="<?php echo site_url('settings/avatar')?>" method="post">
+                            @*<form class="form-horizontal" enctype="multipart/form-data" action="/Settings/Avatar" method="post">*@
                                 <fieldset>
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">当前头像</label>
@@ -39,9 +39,9 @@
                                                 @{
                                                     if (!string.IsNullOrEmpty(ViewBag.User.Avatar))
                                                     {
-                                                        <img class="large_avatar" src="<?php echo base_url($avatars['big']); ?>" />
-                                                        <img class="middle_avatar" src="<?php echo base_url($avatars['middle']); ?>" />
-                                                        <img class="small_avatar" src="<?php echo base_url($avatars['small']); ?>" />
+                                                        <img class="large_avatar" src="@ViewBag.L" />
+                                                        <img class="middle_avatar" src="@ViewBag.M" />
+                                                        <img class="small_avatar" src="@ViewBag.S" />
 
                                                     }
                                                     else
@@ -61,7 +61,8 @@
                                             </p>
                                         </div>
                                     </div>
-
+                                    @using (Html.BeginForm("Avatar", "Settings", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                    {
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label" for="avatar_file">选择图片</label>
                                         <div class="col-sm-5">
@@ -74,8 +75,9 @@
                                             <button type="submit" name="upload" class="btn btn-sm btn-primary">上传新头像</button>
                                         </div>
                                     </div>
+                                    }
                                 </fieldset>
-                            </form>
+                            @*</form>*@
                         </div>
 
                     </div>
@@ -83,7 +85,7 @@
 
                 <div class='col-xs-12 col-sm-6 col-md-4' id='Rightbar'>
 
-                    @Html.Partial("_right-login")
+                    @Html.Action("RightLogin", "Shared")
                     @Html.Partial("_right_ad")
 
                 </div>

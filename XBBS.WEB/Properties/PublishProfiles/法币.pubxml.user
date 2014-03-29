@@ -5,7 +5,9 @@
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <_PublishTargetUrl>F:\wwwroot\XBBS</_PublishTargetUrl>
+    <LastUsedBuildConfiguration>Release</LastUsedBuildConfiguration>
+    <LastUsedPlatform>Any CPU</LastUsedPlatform>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
@@ -18,13 +20,13 @@
       <publishTime>02/22/2014 14:38:23</publishTime>
     </File>
     <File Include="bin/System.Net.Http.dll">
-      <publishTime>07/09/2013 11:04:48</publishTime>
+      <publishTime>07/10/2012 21:52:12</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>02/22/2014 14:38:25</publishTime>
     </File>
     <File Include="bin/System.Net.Http.WebRequest.dll">
-      <publishTime>07/09/2013 11:04:48</publishTime>
+      <publishTime>07/10/2012 21:52:12</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>02/22/2014 14:38:24</publishTime>
@@ -51,25 +53,25 @@
       <publishTime>02/22/2014 14:38:24</publishTime>
     </File>
     <File Include="bin/XBBS.Core.dll">
-      <publishTime>03/07/2014 19:58:13</publishTime>
+      <publishTime>03/18/2014 21:44:49</publishTime>
     </File>
     <File Include="bin/XBBS.DataProvider.dll">
-      <publishTime>03/07/2014 19:58:13</publishTime>
+      <publishTime>03/18/2014 21:44:50</publishTime>
     </File>
     <File Include="bin/XBBS.Models.dll">
-      <publishTime>03/07/2014 19:58:13</publishTime>
+      <publishTime>03/18/2014 21:44:49</publishTime>
     </File>
     <File Include="bin/XBBS.WEB.dll">
-      <publishTime>03/07/2014 19:58:14</publishTime>
+      <publishTime>03/18/2014 21:44:51</publishTime>
     </File>
     <File Include="bin/zh-Hans/System.Net.Http.Formatting.resources.dll">
       <publishTime>02/22/2014 14:38:26</publishTime>
     </File>
     <File Include="bin/zh-Hans/System.Net.Http.resources.dll">
-      <publishTime>07/09/2013 11:34:42</publishTime>
+      <publishTime>07/10/2012 23:31:08</publishTime>
     </File>
     <File Include="bin/zh-Hans/System.Net.Http.WebRequest.resources.dll">
-      <publishTime>07/09/2013 11:34:40</publishTime>
+      <publishTime>07/10/2012 23:31:08</publishTime>
     </File>
     <File Include="bin/zh-Hans/System.Web.Helpers.resources.dll">
       <publishTime>02/22/2014 14:38:26</publishTime>
@@ -503,6 +505,30 @@
     <File Include="theme/default/admin/dashboard.cshtml">
       <publishTime>02/28/2014 19:43:34</publishTime>
     </File>
+    <File Include="theme/default/admin/HtmlPage1.html">
+      <publishTime>03/12/2014 21:50:34</publishTime>
+    </File>
+    <File Include="theme/default/admin/pagenavigate.cshtml">
+      <publishTime>03/09/2014 18:49:42</publishTime>
+    </File>
+    <File Include="theme/default/admin/settings_loginapi.cshtml">
+      <publishTime>03/09/2014 14:14:52</publishTime>
+    </File>
+    <File Include="theme/default/admin/settings_mail.cshtml">
+      <publishTime>03/09/2014 14:30:05</publishTime>
+    </File>
+    <File Include="theme/default/admin/settings_topic.cshtml">
+      <publishTime>03/09/2014 14:15:26</publishTime>
+    </File>
+    <File Include="theme/default/admin/settings_web.cshtml">
+      <publishTime>03/09/2014 14:15:32</publishTime>
+    </File>
+    <File Include="theme/default/admin/userGroup.cshtml">
+      <publishTime>03/12/2014 22:42:12</publishTime>
+    </File>
+    <File Include="theme/default/admin/users.cshtml">
+      <publishTime>03/09/2014 18:22:02</publishTime>
+    </File>
     <File Include="theme/default/admin/_footer.cshtml">
       <publishTime>02/26/2014 20:44:05</publishTime>
     </File>
@@ -513,7 +539,7 @@
       <publishTime>02/26/2014 20:44:05</publishTime>
     </File>
     <File Include="theme/default/admin/_leftbar.cshtml">
-      <publishTime>02/28/2014 19:43:34</publishTime>
+      <publishTime>03/09/2014 14:48:46</publishTime>
     </File>
     <File Include="theme/default/Forum/add.cshtml">
       <publishTime>03/06/2014 22:31:32</publishTime>
@@ -522,7 +548,7 @@
       <publishTime>03/07/2014 19:11:07</publishTime>
     </File>
     <File Include="theme/default/Forum/edit.cshtml">
-      <publishTime>03/06/2014 22:31:32</publishTime>
+      <publishTime>03/07/2014 21:38:24</publishTime>
     </File>
     <File Include="theme/default/Forum/node.cshtml">
       <publishTime>03/07/2014 19:11:07</publishTime>
@@ -534,37 +560,40 @@
       <publishTime>03/06/2014 22:31:32</publishTime>
     </File>
     <File Include="theme/default/Home/index.cshtml">
-      <publishTime>03/07/2014 19:11:07</publishTime>
+      <publishTime>03/08/2014 15:56:16</publishTime>
     </File>
     <File Include="theme/default/Home/section.cshtml">
-      <publishTime>02/28/2014 19:43:34</publishTime>
+      <publishTime>03/08/2014 21:14:34</publishTime>
     </File>
     <File Include="theme/default/Home/user.cshtml">
-      <publishTime>02/28/2014 19:43:34</publishTime>
+      <publishTime>03/08/2014 21:14:34</publishTime>
     </File>
     <File Include="theme/default/Settings/avatar.cshtml">
-      <publishTime>03/06/2014 22:31:32</publishTime>
+      <publishTime>03/08/2014 20:21:30</publishTime>
+    </File>
+    <File Include="theme/default/Settings/password.cshtml">
+      <publishTime>03/08/2014 20:50:34</publishTime>
     </File>
     <File Include="theme/default/Settings/profile.cshtml">
-      <publishTime>02/28/2014 19:43:34</publishTime>
+      <publishTime>03/08/2014 20:21:11</publishTime>
     </File>
     <File Include="theme/default/Shared/_footer.cshtml">
-      <publishTime>02/24/2014 18:25:19</publishTime>
+      <publishTime>03/07/2014 21:31:16</publishTime>
     </File>
     <File Include="theme/default/Shared/_header-meta.cshtml">
       <publishTime>02/23/2014 17:22:34</publishTime>
     </File>
     <File Include="theme/default/Shared/_header.cshtml">
-      <publishTime>03/07/2014 19:57:52</publishTime>
+      <publishTime>03/07/2014 21:51:56</publishTime>
     </File>
     <File Include="theme/default/Shared/_right-cateinfo.cshtml">
       <publishTime>02/28/2014 19:43:34</publishTime>
     </File>
     <File Include="theme/default/Shared/_right-cates.cshtml">
-      <publishTime>02/28/2014 19:43:34</publishTime>
+      <publishTime>03/07/2014 21:33:45</publishTime>
     </File>
     <File Include="theme/default/Shared/_right-login.cshtml">
-      <publishTime>02/28/2014 19:43:34</publishTime>
+      <publishTime>03/08/2014 15:54:48</publishTime>
     </File>
     <File Include="theme/default/Shared/_right-related_forum.cshtml">
       <publishTime>02/28/2014 19:43:34</publishTime>
@@ -576,10 +605,10 @@
       <publishTime>02/24/2014 18:25:19</publishTime>
     </File>
     <File Include="theme/default/Shared/_right_new_users.cshtml">
-      <publishTime>02/24/2014 18:25:19</publishTime>
+      <publishTime>03/07/2014 21:51:22</publishTime>
     </File>
     <File Include="theme/default/Shared/_right_tags.cshtml">
-      <publishTime>02/23/2014 20:26:59</publishTime>
+      <publishTime>03/07/2014 21:29:11</publishTime>
     </File>
     <File Include="theme/default/User/info.cshtml">
       <publishTime>03/07/2014 19:11:07</publishTime>
@@ -588,7 +617,7 @@
       <publishTime>02/28/2014 19:43:34</publishTime>
     </File>
     <File Include="theme/default/User/reg.cshtml">
-      <publishTime>02/23/2014 21:52:28</publishTime>
+      <publishTime>03/07/2014 21:37:24</publishTime>
     </File>
     <File Include="theme/default/User/settings.cshtml">
       <publishTime>02/24/2014 22:43:12</publishTime>
@@ -606,7 +635,7 @@
       <publishTime>02/23/2014 13:52:19</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/07/2014 19:58:14</publishTime>
+      <publishTime>03/18/2014 21:44:51</publishTime>
     </File>
   </ItemGroup>
 </Project>

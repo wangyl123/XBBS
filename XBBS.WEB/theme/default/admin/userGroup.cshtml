@@ -37,6 +37,8 @@
 
 
                         <div class='cell'>
+                               <font color="red">@if (TempData["result"] != null)
+                                          { @TempData["result"]}</font>
                             <div>
                                 <ul class="nav nav-pills">
                                     <li><a href="/Admin/Users">用户列表</a></li>
@@ -63,7 +65,7 @@
                                                     <td>@item.GId</td>
                                                     <td class='auto'>
                                                         <strong>
-                                                            <a href="<?php echo site_url('admin/users/group/edit/'.$v['gid']);?>" class="black startbbs profile_link" title="admin">@item.GroupName</a>
+                                                            <a href="/Admin/UserGroupEdit/@item.GroupName/@item.GId" class="black startbbs profile_link" title="admin">@item.GroupName</a>
                                                         </strong>
                                                     </td>
                                                     <td align='left' class='w50'>
@@ -73,9 +75,10 @@
                                                         @item.UserNum
                                                     </td>
                                                     <td>
-                                                        <a href="" class="btn btn-primary btn-sm">修改</a>
-                                                        @if(item.GroupType==2){
-                                                        <a href="" class="btn btn-sm btn-danger">删除</a>
+                                                        <a href="/Admin/UserGroupEdit/@item.GroupName/@item.GId" class="btn btn-primary btn-sm">修改</a>
+                                                        @if (item.GroupType != 2 && item.GroupType != 1)
+                                                        {
+                                                            <a href="/Admin/DeleteGroup/@item.GId" onclick="return confirm('确认删除')" class="btn btn-sm btn-danger">删除</a>
                                                         }
 
                                                     </td>
@@ -85,7 +88,7 @@
                                         </tbody>
                                     </table>
 
-                                    <a href="<?php echo site_url('admin/users/group/add');?>" class="btn">新建用户组</a>
+                                    <a href="/Admin/UserGroupEdit" class="btn">新建用户组</a>
 
 
                                 </div>
@@ -98,5 +101,6 @@
                 </div>
             </div>
     @Html.Partial("_footer")
+       
 </body>
 </html>

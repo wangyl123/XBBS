@@ -37,6 +37,8 @@
 
 
                         <div class='cell'>
+                             <font color="red">@if (TempData["result"] != null)
+                                          { @TempData["result"]}</font>
                             <div>
                                 <ul class="nav nav-pills">
                                     <li class="active"><a href="/Admin/Users">用户列表</a></li>
@@ -74,8 +76,8 @@
                                                         @item.Money
                                                     </td>
                                                     <td class='center'>
-                                                        <a href="<?php echo site_url('admin/users/edit/'.$v['uid']);?>" class="btn btn-primary btn-sm">修改</a>
-                                                        <a href="<?php echo site_url('admin/users/del/'.$v['uid']);?>" class="btn btn-sm btn-danger">删除</a>
+                                                        <a href="/Admin/UserEdit/@item.Uid" class="btn btn-primary btn-sm">修改</a>
+                                                        <a href="/Admin/DeleteUser/@item.Uid" class="btn btn-sm btn-danger"  onclick="return confirm('确认删除')">删除</a>
                                                     </td>
                                                 </tr>
 

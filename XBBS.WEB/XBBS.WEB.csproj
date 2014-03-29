@@ -262,7 +262,12 @@
     <Content Include="theme\default\admin\settings_mail.cshtml" />
     <Content Include="theme\default\admin\users.cshtml" />
     <Content Include="theme\default\admin\pagenavigate.cshtml" />
-    <Content Include="theme\default\admin\userGroup.cshtml" />
+    <Content Include="theme\default\admin\usergroup.cshtml" />
+    <None Include="Properties\PublishProfiles\法币.pubxml" />
+    <Content Include="theme\default\admin\usersedit.cshtml" />
+    <Content Include="theme\default\admin\usergroupedit.cshtml" />
+    <Content Include="theme\default\admin\node.cshtml" />
+    <Content Include="theme\default\admin\nodeadd.cshtml" />
     <None Include="theme\default\admin\_settingsnavigate.cshtml" />
     <Content Include="uploads\avatar\avatar_large.jpg" />
     <Content Include="uploads\avatar\avatar_small.jpg" />
@@ -406,7 +411,6 @@
     <Content Include="theme\default\Forum\comment.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\PublishProfiles\本地发布.pubxml" />
     <Content Include="theme\default\Settings\password.cshtml" />
     <Content Include="theme\default\admin\settings_web.cshtml" />
     <Content Include="theme\default\admin\settings_topic.cshtml" />

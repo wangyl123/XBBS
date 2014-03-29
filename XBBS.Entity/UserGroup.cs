@@ -6,8 +6,8 @@ using System.Text;
 
 namespace XBBS.Models
 {
-    [TableName("jexus_user_groups")]
-    [PrimaryKey("gid", autoIncrement = false)]
+    [TableName("user_groups")]
+    [PrimaryKey("gid", autoIncrement = true)]
     public class UserGroup
     {
 

@@ -1,0 +1,11 @@
+﻿<div align='center' class='inner'>
+    <div>
+        <ul class='pagination'>
+            @foreach (var item in (ViewData["pageNavigate"] as List<string>))
+            {
+                @Html.Raw(@item)
+            }
+           
+        </ul>
+    </div>
+</div>

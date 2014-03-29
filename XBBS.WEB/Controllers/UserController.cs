@@ -39,7 +39,7 @@ namespace XBBS.WEB.Controllers
             {
                 user.Openid = Request["openid"] == null ? "" : Request["openid"];
                 user.IP = Request.UserHostAddress.ToString();
-                user.GroupType = 2;
+                user.GroupType = 3;
                 user.Gid = 3;
                 user.Regtime = DateTime.Now;
                 user.IsActive = 1;
