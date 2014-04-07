@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content='' name='description'>
+    <meta charset='UTF-8'>
+    <meta content='True' name='HandheldFriendly'>
+    <meta content='width=device-width, initial-scale=1.0' name='viewport'>
+    <title>运行状态 - 管理后台 - @ViewBag.Setting["site_name"]</title>
+    @Html.Partial("_header-meta")
+</head>
+<body id="startbbs">
+    @Html.Partial("_header")
+    <div id="wrap">
+        <div class="container" id="page-main">
+            <div class="row">
+                @Html.Partial("_leftbar")
+
+
+                <div class='col-xs-12 col-sm-6 col-md-9'>
+
+                    <div class='box'>
+                        <div class='cell'>
+                            <div class='pull-right'>
+                                <div class='btn-group'>
+                                    <a href="/Admin/EditLink" class="btn btn-primary btn-sm" data-remote="true">添加链接</a>
+                                </div>
+                            </div>
+                            <a href="/" class="startbbs1">XBBS</a> <span class="chevron">&nbsp;›&nbsp;</span> <a href="/Admin">管理后台</a> <span class="chevron">&nbsp;›&nbsp;</span> 友情链接
+                        </div>
+
+                        <div class='cell'>
+                            <font color="red">
+                                @if (TempData["result"] != null)
+                                { @TempData["result"]}
+                            </font>
+
+                            @{
+                                var list = ViewData["list"] as List<XBBS.Models.Links>;
+                            }
+                            @if (list.Count > 0)
+                            {
+                                <table class='topics table'>
+                                    <thead>
+                                        <tr>
+                                            <th class='w50'>ID</th>
+                                            <th align='left' class='auto'>链接名称</th>
+                                            <th align='left' class='auto'>网址</th>
+                                            <th align='right' class='auto'>显示</th>
+                                            <th class='w100'>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in list)
+                                        {
+
+                                            <tr class='highlight'>
+                                                <td class='w50'>
+                                                    <strong class='green'>
+                                                        @item.Id
+                                                    </strong>
+                                                </td>
+                                                <td class='auto'>
+                                                    <a href="<?php echo $v['url']?>">@item.Name</a>
+                                                </td>
+                                                <td class='auto'>
+                                                    <a href="<?php echo $v['url']?>" class="rabel profile_link" title="admin">@item.Url</a>
+                                                </td>
+                                                <td class='auto'>
+                                                    <small class='fade1'>@if (item.IsHidden == 0)
+                                                    { <text>显示</text>}
+                                                    else
+                                                    {<text>隐藏</text>}</small>
+                                                </td>
+                                                <td class='w100'>
+                                                    <a href="/Admin/EditLink/@item.Id" class="btn btn-primary btn-sm">编辑</a>
+                                                    <a href="/Admin/DeleteLink/@item.Id" class="btn btn-sm btn-danger" onclick="return confirm('确认删除')">删除</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+                            else
+                            {
+                                <text>暂无连接</text>
+                            }
+                        </div>
+                        <div align='center' class='inner'>
+                            <div class='pagination pagination-centered pagination-small'>
+                                <ul>
+                                    @*分页，暂时不做*@
+                                </ul>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Partial("_footer")
+</body>
+</html>

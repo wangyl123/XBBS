@@ -77,7 +77,7 @@
                                                     <div class='sep3'></div>
                                                     <?php if($new_forum[$v['cid']]){?>
                                                     <?php foreach($new_forum[$v['cid']] as $f){?>
-                                                    <div><a href="<?php echo site_url('forum/view/'.$f['fid']);?>" class="startbbs topic"><?php echo sb_substr($f['title'],8);?></a></div>
+                                                    <div><a href="<?php echo site_url('forum/tipic/'.$f['fid']);?>" class="startbbs topic"><?php echo sb_substr($f['title'],8);?></a></div>
                                                     <div>by <a href="<?php echo site_url('user/info/'.$f['uid']);?>" class="dark startbbs profile_link" title="<?php echo $f['username'];?>"><?php echo $f['username'];?></a></div>
                                                     <div><?php echo $this->myclass->friendly_date($f['updatetime']);?></div>
                                                     <?php }?>
@@ -149,7 +149,7 @@
                                                 if (XBBS.DataProvider.ForumDataProvider.GetForums(cat.CId).Count > 0)
                                                 {
                                                     XBBS.Models.Forums f = XBBS.DataProvider.ForumDataProvider.GetForums((int)cat.CId)[0];
-                                                    <div><a href="/forum/view/@f.FId" class="startbbs topic">@f.Title </a></div>
+                                                    <div><a href="/Topic/@f.FId" class="startbbs topic">@f.Title </a></div>
                                                                     <div>by <a href="/user/info/@f.Uid" class="dark startbbs profile_link" title="@f.Uid">@f.Uid</a></div>
                                                                     <div>@XBBS.Core.Utils.FriendlyDate(f.UpdateTime.Value)</div>
 

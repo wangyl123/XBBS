@@ -9,11 +9,17 @@ namespace XBBS.WEB.Controllers
     {
         //
         // GET: /Admin/
-
+        #region 运行状态
         public ActionResult Dashboard()
         {
+            ViewBag.UserCount = DataProvider.AdminDataProvider.GetUserCount();
+            ViewBag.ForumsCount = DataProvider.AdminDataProvider.GetForumsCount();
+            ViewBag.CommentsCount = DataProvider.AdminDataProvider.GetCommentsCount();
+
             return View();
         }
+
+        #endregion
 
         #region 基本设置
         public ActionResult Settings_Web()
@@ -110,6 +116,16 @@ namespace XBBS.WEB.Controllers
             return View("users");
         }
 
+        public ActionResult UserSearch(string username)
+        {
+            var list = DataProvider.AdminDataProvider.UserSearch(username);
+            ViewData["list"] = list;
+            ViewBag.pageNow = 1;
+            ViewBag.url = "/Admin/Users";
+            ViewBag.rowTotalNun = list.Count;
+            return View("users");
+        }
+
 
         public ActionResult UserGroup()
         {
@@ -118,44 +134,7 @@ namespace XBBS.WEB.Controllers
             return View();
         }
 
-        public ActionResult PageNavigate(int rowTotalNun, string url, int pageNow = 1, int pageCount = 10)
-        {
-            List<string> navigateList = new List<string>(); ;
-            int pageTotalNum = rowTotalNun % pageCount == 0 ? (rowTotalNun / pageCount) : rowTotalNun / pageCount + 1;
-            if (pageNow < 1 || pageNow > pageTotalNum)
-            {
-                ViewData["pageNavigate"] = navigateList;
-                return View("pagenavigate");
-            }
-            if (pageNow > 1)
-            {
-                navigateList.Add("<li class='prev'><a href='" + url + "/" + (pageNow - 1) + "'><-</a></li>");
-            }
-
-            for (int i = 1; i <= pageTotalNum; i++)
-            {
-                if (pageNow == i)
-                {
-                    navigateList.Add("<li class='prev'><a href='" + url + "/" + i + "'>" + i + "</a></li>");
-                }
-                else if (pageNow < i)
-                {
-                    navigateList.Add("<li class='next'><a href='" + url + "/" + i + "'>" + i + "</a></li>");
-                }
-                else
-                {
-                    navigateList.Add("<li class='prev'><a href='" + url + "/" + i + "'>" + i + "</a></li>");
-                }
-            }
-            if (pageTotalNum > pageNow)
-            {
-                navigateList.Add("<li class='prev'><a href='" + url + "/" + (pageNow + 1) + "'>-></a></li>");
-            }
-            ViewData["pageNavigate"] = navigateList;
-            ViewBag.html = "<li class='prev'><a href='/Admin/Users/1'>1</a></li><li class='prev'><a href='/Admin/Users/2'>-></a></li> ";
-            return View("pagenavigate");
-        }
-
+       
         public ActionResult UserEdit(int uid)
         {
             var model = DataProvider.AdminDataProvider.GetUserInfo(uid);
@@ -212,7 +191,7 @@ namespace XBBS.WEB.Controllers
             }
             else
             {
-                result=DataProvider.AdminDataProvider.UpdateUserGroup(groupName,gid);
+                result = DataProvider.AdminDataProvider.UpdateUserGroup(groupName, gid);
             }
             if (result)
             {
@@ -241,7 +220,7 @@ namespace XBBS.WEB.Controllers
 
         public ActionResult DeleteUser(int uid)
         {
-            if(DataProvider.AdminDataProvider.DeleteUser(uid))
+            if (DataProvider.AdminDataProvider.DeleteUser(uid))
             {
                 TempData["result"] = "删除成功";
             }
@@ -252,6 +231,46 @@ namespace XBBS.WEB.Controllers
             return RedirectToAction("Users");
         }
 
+        #endregion
+
+        #region 分页栏
+        public ActionResult PageNavigate(int rowTotalNun, string url, int pageNow = 1, int pageCount = 10)
+        {
+            List<string> navigateList = new List<string>(); ;
+            int pageTotalNum = rowTotalNun % pageCount == 0 ? (rowTotalNun / pageCount) : rowTotalNun / pageCount + 1;
+            if (pageNow < 1 || pageNow > pageTotalNum)
+            {
+                ViewData["pageNavigate"] = navigateList;
+                return View("pagenavigate");
+            }
+            if (pageNow > 1)
+            {
+                navigateList.Add("<li class='prev'><a href='" + url + "/" + (pageNow - 1) + "'><-</a></li>");
+            }
+
+            for (int i = 1; i <= pageTotalNum; i++)
+            {
+                if (pageNow == i)
+                {
+                    navigateList.Add("<li class='prev'><a href='" + url + "/" + i + "'>" + i + "</a></li>");
+                }
+                else if (pageNow < i)
+                {
+                    navigateList.Add("<li class='next'><a href='" + url + "/" + i + "'>" + i + "</a></li>");
+                }
+                else
+                {
+                    navigateList.Add("<li class='prev'><a href='" + url + "/" + i + "'>" + i + "</a></li>");
+                }
+            }
+            if (pageTotalNum > pageNow)
+            {
+                navigateList.Add("<li class='prev'><a href='" + url + "/" + (pageNow + 1) + "'>-></a></li>");
+            }
+            ViewData["pageNavigate"] = navigateList;
+            ViewBag.html = "<li class='prev'><a href='/Admin/Users/1'>1</a></li><li class='prev'><a href='/Admin/Users/2'>-></a></li> ";
+            return View("pagenavigate");
+        }
         #endregion
 
         #region 节点
@@ -301,30 +320,170 @@ namespace XBBS.WEB.Controllers
             return tree;
         }
 
-        public ActionResult AddNodes()
+        public ActionResult AddNodes(int? cid)
         {
             var categoryList = DataProvider.AdminDataProvider.GetFirstLevelCategoryList();
             ViewData["categoryList"] = categoryList;
             var usergroupList = DataProvider.AdminDataProvider.GetUserGroupList();
             ViewData["usergroupList"] = usergroupList;
-            return View("nodeadd");
+            Category model = new Category();
+            if (cid != null)
+            {
+                model = DataProvider.AdminDataProvider.GetCategoryInfo((int)cid);
+            }
+            return View("nodeadd", model);
         }
 
         [HttpPost]
         public ActionResult AddNodes(Category model)
         {
             model.Permit = Request["premit"];
-            if (DataProvider.AdminDataProvider.AddCategory(model))
+            bool result = false;
+            if (model.CId > 0)
             {
-                TempData["result"] = "添加成功";
+                result = DataProvider.AdminDataProvider.UpdateCategory(model);
             }
             else
             {
-                TempData["result"] = "添加失败";
+                result = DataProvider.AdminDataProvider.AddCategory(model);
+            }
+            if (result)
+            {
+                TempData["result"] = "操作成功";
+            }
+            else
+            {
+                TempData["result"] = "操作成功";
             }
             return RedirectToAction("Nodes");
         }
 
+        public ActionResult DeleteNode(int cid)
+        {
+            if (DataProvider.AdminDataProvider.DeleteCategory(cid))
+            {
+                TempData["result"] = "操作成功";
+            }
+            else
+            {
+                TempData["result"] = "操作成功";
+            }
+            return RedirectToAction("Nodes");
+        }
+
+        #endregion
+
+        #region 讨论话题
+
+        public ActionResult Topics(int page=1)
+        {
+            ViewData["list"] = DataProvider.AdminDataProvider.GetTopicsList(page);
+            ViewBag.pageNow = page;
+            ViewBag.url = "/Admin/Topics";
+            ViewBag.rowTotalNun = DataProvider.AdminDataProvider.GetForumsCount();
+            return View();
+        }
+
+        public ActionResult SetTop(Int16 istop, int fid)
+        {
+            if (DataProvider.AdminDataProvider.SetTopicTop(fid, istop))
+            {
+                TempData["result"] = "操作成功";
+            }
+            else
+            {
+                TempData["result"] = "操作失败";
+            }
+            return RedirectToAction("Topics");
+        }
+
+        public ActionResult DeleteTopic(int fid)
+        {
+            if (DataProvider.AdminDataProvider.DeleteTopic(fid))
+            {
+                TempData["result"] = "操作成功";
+            }
+            else
+            {
+                TempData["result"] = "操作失败";
+            }
+            return RedirectToAction("Topics");
+        }
+
+        [HttpPost]
+        public ActionResult BatchDeleteTopic(FormCollection collection)
+        {
+            var fids = collection["fid"];
+            if (string.IsNullOrWhiteSpace(fids))
+            {
+                TempData["result"] = "请先选择";
+                return RedirectToAction("Topics");
+            }
+            if (DataProvider.AdminDataProvider.BatchDeleteTopic(fids))
+            {
+                TempData["result"] = "操作成功";
+            }
+            else
+            {
+                TempData["result"] = "操作失败";
+            }
+            return RedirectToAction("Topics");
+        }
+
+        #endregion
+
+        #region 友情链接
+        public ActionResult Links()
+        {
+            ViewData["list"] = DataProvider.AdminDataProvider.GetLinksList();
+            return View();
+        }
+
+        public ActionResult EditLink(int? id)
+        {
+            if (id == null)
+            {
+                return View(new XBBS.Models.Links());
+            }
+            var entity = DataProvider.AdminDataProvider.GetLinkInfo((int)id);
+            return View(entity);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateLink(Models.Links model)
+        {
+            bool result=false;
+            if (model.Id == 0)
+            {
+                result = DataProvider.AdminDataProvider.AddLink(model);
+            }
+            else
+            {
+                result = DataProvider.AdminDataProvider.UpdateLink(model);
+            }
+            if (result)
+            {
+                TempData["result"] = "操作成功";
+            }
+            else
+            {
+                TempData["result"] = "操作失败";
+            }
+            return RedirectToAction("Links");
+        }
+
+        public ActionResult DeleteLink(int id)
+        {
+            if (DataProvider.AdminDataProvider.DeleteLink(id))
+            {
+                TempData["result"] = "操作成功";
+            }
+            else
+            {
+                TempData["result"] = "操作失败";
+            }
+            return RedirectToAction("Links");
+        }
         #endregion
 
     }

@@ -63,7 +63,7 @@
                                             <div class='badge badge-info'><a href="/topic/@f.FId#reply">@f.Comments</a></div>
                                         </div>
                                         <h2 class='topic_title'>
-                                            <a href="/topic/@f.FId" class="startbbs topic">@f.Title</a>
+                                            <a href="/Topic/@f.FId" class="startbbs topic">@f.Title</a>
                                             @{ if (f.IsTop == 1)
                                                {<span class="badge badge-info">置顶</span>} }
                                         </h2>
@@ -196,7 +196,7 @@
                                             <span class='gray'>最新会员</span>
                                         </td>
                                         <td align='left'>
-                                            <strong>@*用户名*@*@@</strong>
+                                            <strong>@ViewBag.LastUser</strong>
                                         </td>
                                     </tr>
                                     }}
@@ -205,7 +205,7 @@
                                         <span class='gray'>注册会员</span>
                                     </td>
                                     <td align='left'>
-                                        <strong>22</strong>
+                                        <strong>@ViewBag.UserCount</strong>
                                     </td>
                                 </tr>
                                 <tr>
@@ -213,7 +213,7 @@
                                         <span class='gray'>今日话题</span>
                                     </td>
                                     <td align='left'>
-                                        <strong>221</strong>
+                                        <strong>@ViewBag.TodayForumCount</strong>
                                     </td>
                                 </tr>
                                 <tr>
@@ -221,7 +221,7 @@
                                         <span class='gray'>话题总数</span>
                                     </td>
                                     <td align='left'>
-                                        <strong>0</strong>
+                                        <strong>@ViewBag.ForumCount</strong>
                                     </td>
                                 </tr>
 
@@ -230,7 +230,7 @@
                                         <span class='gray'>回复数</span>
                                     </td>
                                     <td align='left'>
-                                        <strong>0</strong>
+                                        <strong>@ViewBag.CommentsCount</strong>
                                     </td>
                                 </tr>
                             </table>
@@ -244,7 +244,7 @@
                         </div>
                         <div class="inner">
                             <ul class="list_unstyled">
-                                <li style="width: 0; height: 0; overflow: hidden;"><a href="http://www.startbbs.com" target="_blank">StartBBS</a></li>
+                                <li style="width: 0; height: 0; overflow: hidden;"><a href="http://www.startbbs.com" target="_blank">XBBS</a></li>
                                 @{
                                     if (ViewBag.Links != null || ViewBag.Links.Count == 0)
                                     {

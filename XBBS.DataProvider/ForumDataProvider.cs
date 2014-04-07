@@ -30,7 +30,7 @@ namespace XBBS.DataProvider
         {
             using (PetaPoco.Database db = new PetaPoco.Database("sqlconnection"))
             {
-                return db.Query<Models.Forums>("WHERE cid=@0", cid).ToList();
+                return db.Query<Models.Forums>("WHERE is_hidden=0 and cid=@0 order by is_top desc,addtime desc", cid).ToList();
             }
         }
 
@@ -39,7 +39,7 @@ namespace XBBS.DataProvider
         {
             using (PetaPoco.Database db = new PetaPoco.Database("sqlconnection"))
             {
-                return db.SkipTake<Models.Forums>(skip, top, "  ORDER BY addtime DESC").ToList();
+                return db.SkipTake<Models.Forums>(skip, top, "where is_hidden=0  order by is_top desc,addtime DESC").ToList();
             }
         }
         public static Models.Forums GetForum(int id)
@@ -93,7 +93,7 @@ namespace XBBS.DataProvider
         {
             using (PetaPoco.Database db = new PetaPoco.Database("sqlconnection"))
             {
-                return db.ExecuteScalar<int>("SELECT COUNT(1) FROM stb_comments  WHERE fid=@0", fid);
+                return db.ExecuteScalar<int>("SELECT COUNT(1) FROM comments  WHERE fid=@0", fid);
             }
 
         }
@@ -105,6 +105,47 @@ namespace XBBS.DataProvider
                 var pg = db.Page<Models.Comment>(pageIndex, pageSize, "WHERE fid =@0 ", fid);
                 total = (int)pg.TotalPages;
                 return pg.Items;
+            }
+        }
+
+        public static string GetLastUserName()
+        {
+            using (PetaPoco.Database db = new PetaPoco.Database("sqlconnection"))
+            {
+                var entity = db.Query<Models.User>("SELECT * from users ORDER BY uid DESC LIMIT 1").SingleOrDefault();
+                return entity.NickName;
+            }
+        }
+
+        public static int GetUserCount()
+        {
+            using (PetaPoco.Database db = new PetaPoco.Database("sqlconnection"))
+            {
+               return db.Query<int>("SELECT count(uid) from users").SingleOrDefault();
+            }
+        }
+
+        public static int GetTodayFourmCount()
+        {
+            using (PetaPoco.Database db = new PetaPoco.Database("sqlconnection"))
+            {
+                return db.Query<int>("SELECT count(fid) FROM forums  WHERE addtime>current_date").SingleOrDefault();
+            }
+        }
+
+        public static int GetFourmCount()
+        {
+            using (PetaPoco.Database db = new PetaPoco.Database("sqlconnection"))
+            {
+                return db.Query<int>("SELECT count(fid) FROM forums where is_hidden=0 ").SingleOrDefault();
+            }
+        }
+
+        public static int GetCommentsCount()
+        {
+            using (PetaPoco.Database db = new PetaPoco.Database("sqlconnection"))
+            {
+                return db.Query<int>("SELECT count(id) FROM comments c inner JOIN  forums f on f.fid=c.fid where f.is_hidden=0").SingleOrDefault();
             }
         }
     }

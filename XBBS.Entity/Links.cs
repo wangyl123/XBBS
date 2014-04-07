@@ -7,7 +7,7 @@ namespace XBBS.Models
 {
 
     [PetaPoco.TableName("links")]
-    [PetaPoco.PrimaryKey("id")]
+    [PetaPoco.PrimaryKey("id",autoIncrement=true)]
     public class Links
     {
         [PetaPoco.Column("id")]

@@ -18,6 +18,12 @@ namespace XBBS.WEB.Controllers
         {
             ViewBag.Category = XBBS.DataProvider.ForumDataProvider.GetAllCategory();
             ViewBag.ForumList = XBBS.DataProvider.ForumDataProvider.GetLastForums(PER);
+            ViewBag.LastUser = XBBS.DataProvider.ForumDataProvider.GetLastUserName();
+            ViewBag.UserCount = XBBS.DataProvider.ForumDataProvider.GetUserCount();
+            ViewBag.TodayForumCount = XBBS.DataProvider.ForumDataProvider.GetTodayFourmCount();
+            ViewBag.ForumCount = XBBS.DataProvider.ForumDataProvider.GetFourmCount();
+            ViewBag.CommentsCount = XBBS.DataProvider.ForumDataProvider.GetCommentsCount();
+
             return View();
         }
 

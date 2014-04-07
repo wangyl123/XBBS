@@ -43,6 +43,7 @@ namespace XBBS.WEB.Controllers
                 user.Gid = 3;
                 user.Regtime = DateTime.Now;
                 user.IsActive = 1;
+                user.NickName = user.UserName;
                 bool b = XBBS.DataProvider.AccountDataProvider.CreatUser(user);
                 if (!b)
                 {
@@ -118,6 +119,7 @@ namespace XBBS.WEB.Controllers
         public ActionResult LoginOut()
         {
             System.Web.Security.FormsAuthentication.SignOut();
+            System.Web.HttpContext.Current.Session["User"] = null;
             return Redirect("~/");
         }
 

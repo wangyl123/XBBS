@@ -144,3 +144,4 @@ F:\Git\bbsjexus\JexusBBS\XBBS.WEB\bin\zh-Hans\System.Web.WebPages.Razor.resource
 F:\Git\bbsjexus\JexusBBS\XBBS.WEB\obj\Debug\XBBS.WEB.csprojResolveAssemblyReference.cache
 F:\Git\bbsjexus\JexusBBS\XBBS.WEB\obj\Debug\XBBS.WEB.dll
 F:\Git\bbsjexus\JexusBBS\XBBS.WEB\obj\Debug\XBBS.WEB.pdb
+F:\Git\bbsjexus\JexusBBS\XBBS.WEB\bin\XBBS.WEB.dll.config

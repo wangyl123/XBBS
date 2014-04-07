@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content='' name='description'>
+    <meta charset='UTF-8'>
+    <meta content='True' name='HandheldFriendly'>
+    <meta content='width=device-width, initial-scale=1.0' name='viewport'>
+    <title>运行状态 - 管理后台 - @ViewBag.Setting["site_name"]</title>
+    @Html.Partial("_header-meta")
+    @model XBBS.Models.Links
+</head>
+<body id="startbbs">
+    @Html.Partial("_header")
+    <div id="wrap">
+        <div class="container" id="page-main">
+            <div class="row">
+                @Html.Partial("_leftbar")
+
+
+                <div class='col-xs-12 col-sm-6 col-md-9'>
+
+                    <div class='box'>
+                        <div class='cell'>
+
+                            <a href="/" class="startbbs1">XBBS</a> <span class="chevron">&nbsp;›&nbsp;</span> <a href="/Admin">管理后台</a> <span class="chevron">&nbsp;›&nbsp;</span> 新增连接
+                        </div>
+
+                        <div class='cell'>
+                            <form accept-charset="UTF-8" action="/Admin/UpdateLink" class="simple_form form-horizontal" id="edit_user_1" method="post" novalidate="novalidate">
+                                <input type="hidden" name="id" value="@Model.Id" />
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="name">网站名</label>
+                                    <div class="col-sm-5">
+                                        <input class="form-control" id="name" name="Name" size="50" type="text" value="@Model.Name" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="url">网址</label>
+                                    <div class="col-sm-5">
+                                        <input class="form-control" id="url" name="Url" size="50" type="email" value="@Model.Url" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="user_account_attributes_location">显示/隐藏</label>
+                                    <div class="col-sm-5">
+                                        <label class='radio-inline'>
+                                            <input id="settings_show_community_stats_on" @if (Model.IsHidden == 0) { <text> checked="checked" </text>    } name="IsHidden" type="radio" value="0" />
+                                            显示
+                                        </label>
+                                        <label class='radio-inline'>
+                                            <input id="settings_show_community_stats_off" name="IsHidden" @if (Model.IsHidden == 1) { <text> checked="checked" </text>    } type="radio" value="1" />
+                                            隐藏
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-3 col-sm-9">
+                                        <button type="submit" name="commit" class="btn btn-primary">
+                                            @if (Model.Id == 0)
+                                            { <text>添加链接</text>}
+                                            else
+                                            { <text>更新连接</text>}
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Partial("_footer")
+</body>
+</html>

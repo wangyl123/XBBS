@@ -219,11 +219,25 @@ ALTER SEQUENCE jexus_users_uid_seq OWNED BY users.uid;
 
 
 --
+-- Name: seq_links_id; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE seq_links_id
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.seq_links_id OWNER TO postgres;
+
+--
 -- Name: links; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE links (
-    id smallint NOT NULL,
+    id smallint DEFAULT nextval('seq_links_id'::regclass) NOT NULL,
     name character varying(100),
     url character varying(200),
     logo character varying(200),
@@ -371,7 +385,8 @@ COPY categories (cid, pid, cname, content, keywords, ico, master, permit, listnu
 4	1	Mono@CentOS	 	 	\N	 	1	1	\N	\N
 5	1	树莓派	 	 	\N	 	1	1	\N	\N
 6	0	测试根	测试	测试	\N	admin	1,2,3,5	\N	\N	\N
-7	6	测试子	测试子	测试子	\N	admin	\N	0	\N	\N
+8	0	测试根2	asfsdfa	asfa	\N	adsdaflj,asdfjkl	1,2	0	\N	\N
+7	8	测试子	测试子	测试子	\N	admin	\N	0	\N	\N
 \.
 
 
@@ -380,6 +395,12 @@ COPY categories (cid, pid, cname, content, keywords, ico, master, permit, listnu
 --
 
 COPY comments (id, fid, uid, content, replytime) FROM stdin;
+7	11	4	AABBDD	2014-04-05 16:12:16.345828+08
+8	11	4	asdfasdfsdafsadf	2014-04-05 16:12:25.48102+08
+9	11	4	sadfasdfsdafsdafsadf	2014-04-05 16:12:28.094079+08
+10	11	4	sadfsadf	2014-04-05 16:12:35.803186+08
+11	12	4	灰常灰常好	2014-04-05 16:45:10.7679+08
+12	13	4	回复一下	2014-04-07 21:28:02.273605+08
 \.
 
 
@@ -396,6 +417,10 @@ COPY favorites (id, uid, favorites, content) FROM stdin;
 --
 
 COPY forums (fid, cid, uid, ruid, title, keywords, content, addtime, updatetime, lastreply, views, comments, favorites, closecomment, is_top, is_hidden, ord) FROM stdin;
+10	3	4	\N	sadf	\N	asfsadf	2014-03-30 20:19:39.607775+08	2014-03-30 20:19:39.608773+08	\N	1	0	\N	\N	0	0	0
+12	4	37	4	le-haha	\N	lasjflkjsdalfjklsadjfsadfsdfsadfsdafasdf	2014-04-05 16:42:42.452457+08	2014-04-05 16:42:42.452457+08	2014-04-05 16:45:10.778914+08	14	1	\N	\N	0	0	0
+11	3	4	4	AABBCC	\N	432edXB	2014-04-05 13:00:44.117859+08	2014-04-05 16:12:03.3336+08	2014-04-05 16:12:35.813179+08	28	4	\N	\N	1	0	0
+13	3	4	4	发表一篇	\N	哇咔咔~~！！！	2014-04-07 21:27:50.442212+08	2014-04-07 21:27:50.442212+08	2014-04-07 21:28:02.287641+08	3	1	\N	\N	0	0	0
 \.
 
 
@@ -403,21 +428,21 @@ COPY forums (fid, cid, uid, ruid, title, keywords, content, addtime, updatetime,
 -- Name: jexus_comments_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('jexus_comments_seq', 6, true);
+SELECT pg_catalog.setval('jexus_comments_seq', 12, true);
 
 
 --
 -- Name: jexus_forums_fid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('jexus_forums_fid_seq', 9, true);
+SELECT pg_catalog.setval('jexus_forums_fid_seq', 13, true);
 
 
 --
 -- Name: jexus_users_uid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('jexus_users_uid_seq', 36, true);
+SELECT pg_catalog.setval('jexus_users_uid_seq', 37, true);
 
 
 --
@@ -425,6 +450,8 @@ SELECT pg_catalog.setval('jexus_users_uid_seq', 36, true);
 --
 
 COPY links (id, name, url, logo, is_hidden) FROM stdin;
+1	百度	http://www.baidu.com	\N	0
+2	Jexus	http://www.linuxdot.net	\N	0
 \.
 
 
@@ -448,7 +475,14 @@ COPY page (pid, title, content, go_url, add_time, is_hidden) FROM stdin;
 -- Name: seq_category_id; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('seq_category_id', 7, true);
+SELECT pg_catalog.setval('seq_category_id', 10, true);
+
+
+--
+-- Name: seq_links_id; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('seq_links_id', 4, true);
 
 
 --
@@ -556,6 +590,7 @@ COPY users (uid, username, password, openid, email, avatar, homepage, money, sig
 24	s	03C7C0ACE395D80182DB07AE2C30F034	                                	s@s.com	\N	\N	\N	\N	\N	\N	\N	0	2014-03-09 18:40:36.897988+08	\N	\N	\N	2	3	::1            	\N	\N	\N	1	\N
 25	t	E358EFA489F58062F10DD7316B65649E	                                	t@t.com	\N	\N	\N	\N	\N	\N	\N	0	2014-03-09 18:40:53.285861+08	\N	\N	\N	2	3	::1            	\N	\N	\N	1	\N
 26	u	7B774EFFE4A349C6DD82AD4F4F21D34C	                                	u@u.com	\N	\N	\N	\N	\N	\N	\N	0	2014-03-09 18:41:03.586951+08	\N	\N	\N	2	3	::1            	\N	\N	\N	1	\N
+37	le	D9180594744F870AEEFB086982E980BB	                                	le@le.com	\N	\N	\N	\N	\N	\N	\N	0	2014-04-05 16:42:24.932706+08	\N	\N	\N	3	3	::1            	\N	\N	\N	1	le
 4	admin	69BFC4EF467B367E3515CDCF693E65DB	                                	djs@olexe.cn	\N	\N	100	 	0	0	0	0	2014-03-07 20:55:42.548339+08	\N	\N	 	1	1	222.209.110.12 	 	\N	 	1	管理员大人
 9	alele	69BFC4EF467B367E3515CDCF693E65DB	                                	a@a.com	\N	aa。com	\N	\N	\N	\N	\N	0	2014-03-09 18:36:01.701832+08	\N	\N	\N	3	3	::1            	\N	\N	\N	1	alele
 16	j	363B122C528F54DF4A0446B6BAB05515	                                	j@j.com	\N	\N	\N	\N	\N	\N	\N	0	2014-03-09 18:38:26.977939+08	\N	\N	\N	3	3	::1            	\N	\N	\N	1	j

@@ -10,6 +10,6 @@ F:\SourceCode\JexusBBS\XBBS.Entity\obj\Debug\XBBS.Models.dll
 F:\SourceCode\JexusBBS\XBBS.Entity\obj\Debug\XBBS.Models.pdb
 F:\Git\bbsjexus\JexusBBS\XBBS.Entity\bin\Debug\XBBS.Models.dll
 F:\Git\bbsjexus\JexusBBS\XBBS.Entity\bin\Debug\XBBS.Models.pdb
-F:\Git\bbsjexus\JexusBBS\XBBS.Entity\obj\Debug\XBBS.Models.csprojResolveAssemblyReference.cache
 F:\Git\bbsjexus\JexusBBS\XBBS.Entity\obj\Debug\XBBS.Models.dll
 F:\Git\bbsjexus\JexusBBS\XBBS.Entity\obj\Debug\XBBS.Models.pdb
+F:\Git\bbsjexus\JexusBBS\XBBS.Entity\obj\Debug\XBBS.Models.csprojResolveAssemblyReference.cache

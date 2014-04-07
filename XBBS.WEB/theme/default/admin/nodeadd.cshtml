@@ -1,4 +1,4 @@
-﻿@model XBBS.Models.User
+﻿@model XBBS.Models.Category
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,11 +26,11 @@
                         </div>
                         <div class='cell'>
                             <form accept-charset="UTF-8" action="/Admin/AddNodes" class="form-horizontal" id="edit_user_1" method="post" novalidate="novalidate">
-
+                                <input type="hidden" name="CId" value="@Model.CId" />
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label" for="cname">分类名称</label>
                                     <div class="col-sm-5">
-                                        <input class="form-control" id="cname" name="CName" type="text" value="" />
+                                        <input class="form-control" id="cname" name="CName" type="text" value="@Model.CName" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -40,7 +40,8 @@
                                             <option selected="selected" value="0">根目录</option>
                                             @foreach (var item in (ViewData["categoryList"] as List<XBBS.Models.Category>))
                                             {
-                                                <option value="@item.CId">&nbsp;&nbsp;@item.CName</option>
+                                                <option value="@item.CId" @if (item.CId == @Model.PId)
+                                                                          {<text> selected="selected" </text>} >&nbsp;&nbsp;@item.CName</option>
                                             }
                                         </select>
                                     </div>
@@ -48,19 +49,19 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label" for="keywords">分类关键字</label>
                                     <div class="col-sm-5">
-                                        <input class="form-control" id="keywords" name="Keywords" size="50" type="text" value="" />
+                                        <input class="form-control" id="keywords" name="Keywords" size="50" type="text" value="@Model.Keywords" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label" for="content">分类简介</label>
                                     <div class="col-sm-5">
-                                        <textarea class="form-control" cols="40" id="content" name="Content" rows="5"></textarea>
+                                        <textarea class="form-control" cols="40" id="content" name="Content" rows="5">@Model.Content</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label" for="master">节点版主</label>
                                     <div class="col-sm-5">
-                                        <input class="form-control" id="master" name="Master" size="50" type="text" value="" />
+                                        <input class="form-control" id="master" name="Master" size="50" type="text" value="@Model.Master" />
                                         <small class='help-inline'>多个版主间用逗号隔开(,)</small>
                                     </div>
                                 </div>
@@ -70,7 +71,8 @@
                                         @foreach (var item in (ViewData["usergroupList"] as List<XBBS.Models.UserGroup>))
                                         {
                                             <label class="checkbox inline">
-                                                <input name="premit" value="@item.GId" type="checkbox">@item.GroupName
+                                                <input name="premit" value="@item.GId" type="checkbox" @if ((Model.Permit == null ? "" : Model.Permit).IndexOf(@item.GId.ToString()) >= 0)
+                                                                                                       {<text> checked="checked"</text>} >@item.GroupName
                                             </label>
                                         }
 
@@ -86,7 +88,16 @@
 
                                 <div class="form-group">
                                     <div class="col-sm-offset-3 col-sm-9">
-                                        <button type="submit" class="btn btn-primary">添加节点</button>
+                                        <button type="submit" class="btn btn-primary">
+                                            @if (Model.CId != null && Model.CId != 0)
+                                            {
+                                                <text>更新节点</text>
+                                            }
+                                            else
+                                            {
+                                                 <text>添加节点</text>
+                                            }
+                                        </button>
                                     </div>
                                 </div>
 

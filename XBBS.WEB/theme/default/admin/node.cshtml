@@ -49,9 +49,9 @@
    
                                 <div class='cell node' id='node_1'>
                                     <div class='pull-right'>
-                                        <a href="<?php echo site_url('/admin/nodes/edit/'.$v['cid']);?>" class="btn btn-primary btn-sm" data-remote="true" id="edit_node_1">修改节点</a>
-                                        <a href="<?php echo site_url('/admin/nodes/move/'.$v['cid']);?>" class="btn btn-primary btn-sm" data-remote="true">移动</a>
-                                        <a href="<?php echo site_url('/admin/nodes/del/'.$v['cid']);?>" class="btn btn-sm btn-danger" data-confirm="真的要删除吗?" data-method="delete" data-remote="true" rel="nofollow">删除</a>
+                                        <a href="/Admin/AddNodes/@item.CId" class="btn btn-primary btn-sm" data-remote="true" id="edit_node_1">修改节点</a>
+                                        
+                                        <a href="/Admin/DeleteNode/@item.CId" onclick="return confirm('确认删除')" class="btn btn-sm btn-danger" >删除</a>
                                     </div>
                                     @if(Convert.ToInt32(item.CLevel)>0){
                                        <text> &nbsp;&nbsp;&nbsp;&nbsp;|----</text>@item.CName   

@@ -43,4 +43,21 @@ namespace XBBS.WEB.Controllers
 
         }
     }
+
+    public class SecondController : RootController
+    {
+        public SecondController():base()
+        {
+            this.CheckHasLogin();
+        }
+
+        private void CheckHasLogin()
+        {
+            var a = System.Web.HttpContext.Current.Session["User"];
+            if (System.Web.HttpContext.Current.Session["User"]==null)
+            {
+                System.Web.HttpContext.Current.Response.Redirect("/User/Login");
+            }
+        }
+    }
 }

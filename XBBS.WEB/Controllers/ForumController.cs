@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace XBBS.WEB.Controllers
 {
-    public class ForumController : RootController
+    public class ForumController : SecondController
     {
         //
         // GET: /Forum/

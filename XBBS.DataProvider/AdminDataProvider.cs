@@ -61,6 +61,17 @@ namespace XBBS.DataProvider
             return list;
         }
 
+        public static List<Models.ViewModel.UserListViewModel> UserSearch(string key)
+        {
+            List<Models.ViewModel.UserListViewModel> list = new List<Models.ViewModel.UserListViewModel>();
+            using (PetaPoco.Database db = new PetaPoco.Database("sqlconnection"))
+            {
+                var res = db.Query<Models.ViewModel.UserListViewModel>("SELECT u.uid,u.username,u.email,g.group_name,u.money FROM users u INNER JOIN user_groups g on u.gid=g.gid where u.username like '%" + key + "%' order by uid ");
+                list.AddRange(res);
+            }
+            return list;
+        }
+
         public static List<Models.UserGroup> GetUserGroupsList()
         {
             using (PetaPoco.Database db = new PetaPoco.Database("sqlconnection"))
@@ -251,5 +262,142 @@ namespace XBBS.DataProvider
             }
         }
 
+        public static Category GetCategoryInfo(int cid)
+        {
+            using (PetaPoco.Database db = new PetaPoco.Database("sqlconnection"))
+            {
+                return db.Query<Category>("where cid=@0", cid).SingleOrDefault();
+            }
+        }
+
+        public static bool UpdateCategory(Category model)
+        {
+            using (PetaPoco.Database db = new PetaPoco.Database("sqlconnection"))
+            {
+                var entity = GetCategoryInfo(model.CId);
+                entity.CName = model.CName;
+                entity.Content = model.Content;
+                entity.Keywords = model.Keywords;
+                entity.Master = model.Master;
+                entity.Permit = model.Permit;
+                entity.PId = model.PId;
+                return db.Update(entity) > 0;
+            }
+        }
+
+        public static bool DeleteCategory(int cid)
+        {
+            using (PetaPoco.Database db = new PetaPoco.Database("sqlconnection"))
+            {
+                return db.Delete(db.Query<Category>("where cid=@0", cid).SingleOrDefault()) > 0;
+            }
+        }
+
+        public static int GetUserCount()
+        {
+            using (PetaPoco.Database db = new PetaPoco.Database("sqlconnection"))
+            {
+                return db.Query<int>("select count(uid) from users").SingleOrDefault();
+            }
+        }
+
+        public static int GetForumsCount()
+        {
+            using (PetaPoco.Database db = new PetaPoco.Database("sqlconnection"))
+            {
+                return db.Query<int>("SELECT count(fid) FROM forums where is_hidden=0").SingleOrDefault();
+            }
+        }
+
+        public static int GetCommentsCount()
+        {
+            using (PetaPoco.Database db = new PetaPoco.Database("sqlconnection"))
+            {
+                return db.Query<int>("SELECT count(id) FROM comments c inner JOIN  forums f on f.fid=c.fid where f.is_hidden=0").SingleOrDefault();
+            }
+        }
+
+        public static List<Models.ViewModel.TopicManageModel> GetTopicsList(int startPage = 1, int pageCount = 10)
+        {
+            using (PetaPoco.Database db = new PetaPoco.Database("sqlconnection"))
+            {
+                return db.Query<Models.ViewModel.TopicManageModel>("select f.fid,f.title,f.addtime,c.cname,u.username,c.cid,u.uid,count(co.id) as replycount,f.is_top  from forums f INNER JOIN categories c on c.cid=f.cid INNER JOIN users u on u.uid=f.uid left JOIN comments co on co.fid=f.fid where f.is_hidden=0 group by f.fid,f.title,f.addtime,c.cname,u.username,u.uid,c.cid,f.is_top ORDER BY f.is_top DESC, f.addtime DESC").Skip(pageCount * ((startPage >= 1 ? startPage : 1) - 1)).Take(pageCount).ToList();
+            }
+        }
+
+        public static bool SetTopicTop(int fid, Int16 istop)
+        {
+            using (PetaPoco.Database db = new PetaPoco.Database("sqlconnection"))
+            {
+                var entity = db.Query<Models.Forums>("where fid=@0", fid).SingleOrDefault();
+                entity.IsTop = istop;
+                return db.Update(entity) > 0;
+            }
+        }
+
+        public static bool DeleteTopic(int fid)
+        {
+            using (PetaPoco.Database db = new PetaPoco.Database("sqlconnection"))
+            {
+                var entity = db.Query<Models.Forums>("where fid=@0", fid).SingleOrDefault();
+                entity.IsHidden = 1;
+                return db.Update(entity) > 0;
+            }
+        }
+
+        public static bool BatchDeleteTopic(string fids)
+        {
+            using (PetaPoco.Database db = new PetaPoco.Database("sqlconnection"))
+            {
+                var sql = "UPDATE forums SET is_hidden=1 WHERE fid in(" + fids + ") ";
+                var result = db.Execute(sql);
+                return result > 0;
+            }
+        }
+
+        public static List<Models.Links> GetLinksList()
+        {
+            using (PetaPoco.Database db = new PetaPoco.Database("sqlconnection"))
+            {
+                return db.Query<Models.Links>("order by id").ToList();
+            }
+        }
+
+        public static Models.Links GetLinkInfo(int id)
+        {
+            using (PetaPoco.Database db = new PetaPoco.Database("sqlconnection"))
+            {
+                return db.Query<Models.Links>("where id=@0", id).SingleOrDefault();
+            }
+        }
+
+        public static bool AddLink(Models.Links model)
+        {
+            using (PetaPoco.Database db = new PetaPoco.Database("sqlconnection"))
+            {
+                return db.Insert(model) != null;
+            }
+        }
+
+        public static bool UpdateLink(Models.Links model)
+        {
+            using (PetaPoco.Database db = new PetaPoco.Database("sqlconnection"))
+            {
+                var entity = db.Query<Models.Links>("where id=@0", model.Id).SingleOrDefault();
+                entity.IsHidden = model.IsHidden;
+                entity.Logo = model.Logo;
+                entity.Name = model.Name;
+                entity.Url = model.Url;
+                return db.Update(entity) > 0;
+            }
+        }
+
+        public static bool DeleteLink(int id)
+        {
+            using (PetaPoco.Database db = new PetaPoco.Database("sqlconnection"))
+            {
+                return db.Delete<Models.Links>(id) > 0;
+            }
+        }
     }
 }

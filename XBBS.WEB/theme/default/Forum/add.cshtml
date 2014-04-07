@@ -71,7 +71,7 @@
                             创建新话题
                         </div>
                         <div class='inner row'>
-                            @using (Html.BeginForm("add", "forum", FormMethod.Post, new { id = "new_topic", novalidate = "novalidate" }))
+                            @using (Html.BeginForm("Add", "Forum", FormMethod.Post, new { id = "new_topic", novalidate = "novalidate" }))
                             {
                                 <div style="margin:0;padding:0;display:inline">
                                     <input name="utf8" type="hidden" value="&#x2713;" />
@@ -178,7 +178,8 @@
 
                 </div>
                 <div class='col-xs-12 col-sm-6 col-md-4' id='Rightbar'>
-                    @Html.Partial("_right-login")
+                    @*@Html.Partial("_right-login")*@
+                    @Html.Action("RightLogin","Shared")
                     @Html.Partial("_right_ad")
 
                 </div>

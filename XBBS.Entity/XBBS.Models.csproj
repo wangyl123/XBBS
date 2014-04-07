@@ -52,6 +52,7 @@
     <Compile Include="Settings.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserGroup.cs" />
+    <Compile Include="ViewModel\TopicManageModel.cs" />
     <Compile Include="ViewModel\UserListViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
